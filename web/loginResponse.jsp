@@ -4,9 +4,10 @@
     Author     : benkandov
 --%>
 
+<%@page import="bean.UserCreation"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
-<%@page import="bean.LoginDao"%>
+<%@page import="bean.DAO.LoginDao"%>
 <%@page import="bean.User"%>
 <!DOCTYPE html>
 <html>
@@ -21,19 +22,31 @@
         <%
             String email = request.getParameter("email");
             String pass = request.getParameter("pass");
-            User user = new User();
+            UserCreation user = new UserCreation();
             user.setEmail(email);
             user.setPassword(pass);
             
-            int status = LoginDao.login(user);
+            User sessionUser = LoginDao.login(user);
             
-            if(status>0){
-                session.setAttribute("userid", status);
-                out.print("Your session is " + session.getAttribute("userid"));
+            if (sessionUser == null){
+                 out.print("Login failed. Either username or password invalid.");
             }
             else{
-                out.print("Login failed. Either username or password invalid.");
+                session.setAttribute("userid", sessionUser.getUserId());
+                session.setAttribute("firstname", sessionUser.getFirstName());
+                session.setAttribute("lastname", sessionUser.getLastName());
+                session.setAttribute("email", sessionUser.getEmail());
+                session.setAttribute("phonenumber", sessionUser.getPhoneNumber());
+                session.setAttribute("address", sessionUser.getAddress());
+                session.setAttribute("state", sessionUser.getState());
+                session.setAttribute("city", sessionUser.getCity());
+                session.setAttribute("zipcode", sessionUser.getZipCode());
+                session.setAttribute("creditcard", sessionUser.getCreditCard());
+                session.setAttribute("creationdate", sessionUser.getCreationDate());
+                
+                response.sendRedirect("index.jsp");
             }
+     
             
             %>
     </body>

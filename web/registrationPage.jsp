@@ -20,6 +20,7 @@
     </head>
     <body>
         <%
+             /**
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             Connection connection = ds.getConnection();
@@ -28,7 +29,7 @@
                 throw new SQLException("Error establishing connection");
             }
             connection.close();
-            /**
+           
             String testQuery = "SELECT * FROM BUSER";
             
             PreparedStatement statement = connection.prepareStatement(testQuery);

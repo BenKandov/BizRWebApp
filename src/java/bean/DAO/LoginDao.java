@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bean;
+package bean.DAO;
 
+import bean.User;
+import bean.UserCreation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +20,8 @@ import javax.naming.NamingException;
  * @author benkandov
  */
 public class LoginDao {
-     public static int login(User u) throws SQLException{
-         int status = 0;
+     public static User login(UserCreation u) throws SQLException{
+         User user = null;
          Connection conn = null;
          try{
             InitialContext ctx = new InitialContext();
@@ -32,7 +34,14 @@ public class LoginDao {
             ps.setString(2, u.getPassword());
             ResultSet rs = ps.executeQuery();
             
-            status =  rs.findColumn("userid");
+            
+            rs.next();
+            System.out.println(rs);
+            user =  new User( rs.getInt("userid"),rs.getString("FirstName"),
+            rs.getString("lastname"), rs.getString("email"),rs.getString("phonenumber"),
+            rs.getString("address"),rs.getString("state"),rs.getString("city"),rs.getString("zipcode"),
+            rs.getString("creditcard"), rs.getString("creationdate"));
+            
             
             
             conn.close();
@@ -41,7 +50,8 @@ public class LoginDao {
          catch(NamingException | SQLException e){
              System.out.println(e);
          }
-         return status;
+         
+         return user;
     
          
      }

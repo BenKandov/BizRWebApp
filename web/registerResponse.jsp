@@ -4,11 +4,10 @@
     Author     : benkandov
 --%>
 
+<%@page import="bean.UserCreation"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bean.RegistrationDao"%>
-<jsp:useBean id="obj" class="bean.User"/>  
+<%@page import="bean.DAO.RegistrationDao"%>
 
-<jsp:setProperty property="*" name="obj"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +16,16 @@
     </head>
     <body>
         <%
+            String email = request.getParameter("email");
+            String firstname = request.getParameter("firstName");
+            String lastname = request.getParameter("lastName");
+            String pass = request.getParameter("pass");
+            UserCreation obj = new UserCreation();
+            obj.setEmail(email);
+            obj.setFirstName(firstname);
+            obj.setLastName(lastname);
+            obj.setPassword(pass);
+            
             int status = RegistrationDao.register(obj);
             if(status>0)
                 out.print("Succesfully registered!");

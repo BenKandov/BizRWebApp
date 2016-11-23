@@ -1,5 +1,6 @@
-package bean;
+package bean.DAO;
 
+import bean.UserCreation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import javax.naming.NamingException;
  */
 public class RegistrationDao {
     
-    public static int register(User u) throws SQLException{
+    public static int register(UserCreation u) throws SQLException{
         int status = 0;
         Connection conn = null;
         try{
@@ -35,7 +36,7 @@ public class RegistrationDao {
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getPassword());
             
-            
+          
             
             
             status = ps.executeUpdate();
