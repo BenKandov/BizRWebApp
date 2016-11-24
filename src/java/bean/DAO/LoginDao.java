@@ -55,7 +55,33 @@ public class LoginDao {
     
          
      }
-     public static int update(User u) throws SQLException{
+   public static String getUserIdFromEmail(String email) throws SQLException{
+       Connection conn = null;
+       String id = "";
+       try{
+           InitialContext ctx = new InitialContext();
+           DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+           conn = (Connection) ds.getConnection();
+           PreparedStatement ps = conn.prepareStatement("select userid from"
+                   + " buser where email = ?");
+           
+           ps.setString(1, email);
+           
+           
+           ResultSet rs = ps.executeQuery();
+           rs.next();
+           id = rs.getString("userid");
+           
+       }catch(NamingException | SQLException e){
+           System.out.println(e);
+       }
+       conn.close();
+       return id;
+   }
+     
+     
+     
+   public static int update(User u) throws SQLException{
          int status = 0;
          Connection conn = null;
          try{
@@ -77,7 +103,7 @@ public class LoginDao {
             ps.setString(8,u.getCreditCard());
             ps.setString(9,u.getEmail());
             
-            System.out.println(u.getEmail());
+            
             status = ps.executeUpdate();
             
          }

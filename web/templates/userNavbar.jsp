@@ -24,7 +24,16 @@
             <div class ="collapse navbar-collapse" id="user-toolbar">
                 <ul class="nav navbar-nav">
                     <li><a href="updateInfoPage.jsp"> Update User Info</a></li>
-                    <li><a href="messages.jsp"> Messages</a></li>                 
+                  
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Messages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="createMessage.jsp">Create a Message</a></li>
+                          <li><a href="messages.jsp">Check your messages</a></li>
+             
+                        </ul>
+                      </li>
+                    
                     
                     <li>
                         <form method="get" action="index.jsp">
