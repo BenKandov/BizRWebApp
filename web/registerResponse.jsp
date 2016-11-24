@@ -13,6 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registration Confirmation</title>
+          <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+          <script type="text/javascript" src="JS/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/bootstrap.min.js"></script>
     </head>
     <body>
         <%
@@ -27,11 +30,23 @@
             obj.setPassword(pass);
             
             int status = RegistrationDao.register(obj);
-            if(status>0)
-                out.print("Succesfully registered!");
+            if(status>0){
+                %>
+                
+                <div class="container-fluid">
+                    
+                    <h1> Successfully registered! </h1>
+                    <br>
+                    <h2> <a href="loginPage.jsp"> Log in </a> </h2>
+                </div>
+            <%}
             else{
-                out.print("Something went wrong.");
-            }
+                %>
+                  <div class="container-fluid">
+                      <h1> Someone has already made an account with that email. </h1>
+                      <h2> Please try <a href="registrationPage.jsp"> again. </a> </h2>
+                  </div>
+            <%}
             %>
         
     </body>

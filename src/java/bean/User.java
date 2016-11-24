@@ -29,6 +29,20 @@ public class User {
         this.CreditCard = credit;
         this.CreationDate = creation;
     }
+       public User( String fname, String lname,
+            String email, String pnumber, String address, String state,
+            String city, String zip, String credit){
+  
+        this.FirstName = fname;
+        this.LastName = lname;
+        this.Email = email;
+        this.PhoneNumber = pnumber;
+        this.Address = address;
+        this.State = state;
+        this.City = city;
+        this.ZipCode = zip;
+        this.CreditCard = credit;
+    }
 
     /**
      * @return the UserId
