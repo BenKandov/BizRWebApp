@@ -14,7 +14,7 @@
     </head>
     <body>
         <%
-            System.out.println(request.getParameter("messageToDelete"));
+            
             int status = MessageDao.deleteMessage(request.getParameter("messageToDelete"));
             
             response.sendRedirect("receivedMessages.jsp");

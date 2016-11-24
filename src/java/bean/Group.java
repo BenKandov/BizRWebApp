@@ -10,6 +10,7 @@ package bean;
  * @author benkandov
  */
 public class Group {
+    private String id;
     private String name, type;
     private String ownerId;
     
@@ -19,6 +20,13 @@ public class Group {
         this.name = name;
         this.type = type;
     }
+   public Group(String id, String ownerId, String name, String type ){
+        this.ownerId = ownerId;
+        this.name = name;
+        this.type = type;
+        this.id = id;
+    }
+    
     
     /**
      * @return the name
@@ -60,5 +68,19 @@ public class Group {
      */
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 }

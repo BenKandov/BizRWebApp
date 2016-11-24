@@ -8,7 +8,10 @@ package bean.DAO;
 import bean.Group;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -40,5 +43,53 @@ public class GroupDAO {
         conn.close();
         return status;
         
+    }
+   public static int deleteGroup(String groupId) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call deletegroup(?)");
+            ps.setString(1, groupId);
+            status = ps.executeUpdate();
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    
+    public static List<Group> getGroupsByOwner(String userid) throws SQLException{
+        List<Group> groups = new ArrayList<Group>(); 
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from bgroup where"
+                    + " ownerid=?");
+            
+            ps.setString(1, userid);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String groupId = rs.getString("groupid");
+                String groupName = rs.getString("groupname");
+                String groupType = rs.getString("typeofgroup");
+                Group group = new Group(groupId,userid, groupName, groupType);
+                groups.add(group);
+            }
+            
+         }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return groups;
     }
 }

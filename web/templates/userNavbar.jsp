@@ -37,7 +37,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Groups <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="createGroup.jsp">Create a Group</a></li>
-
+                          <li><a href="viewGroups.jsp">View Groups</a></li>
                         </ul>
                       </li>
                     
