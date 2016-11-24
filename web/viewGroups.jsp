@@ -58,7 +58,7 @@
                            <input type ="hidden" name="groupToDelete" value="<%out.print(g.getId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                        </form>
-                        <form method="get" action="updateGroupName.jsp">
+                        <form method="get" action="updateGroupName.jsp" style="padding-bottom:10px">
                              <div class="form-group row">
                                 <div class="form-group">
                                       <label for="newnameinput" class="col-xs-2 col-form-label"> </label>
@@ -71,6 +71,12 @@
                            <input type ="hidden" name="groupToUpdate" value="<%out.print(g.getId()); %>">
                         <button type="submit" class="btn btn-success">Update Name</button>
                        </form>
+                        <form method="get" action="searchForUsers.jsp">
+                            <input type ="hidden" name="id" value="<%out.print(g.getId()); %>">
+                            <input type ="hidden" name="name" value="<%out.print(g.getName()); %>">
+                            <button type="submit" class="btn btn-success">Search for New Members</button>
+                                
+                        </form>
                         
                     </div> 
                 

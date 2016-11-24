@@ -43,6 +43,10 @@ public class User {
         this.ZipCode = zip;
         this.CreditCard = credit;
     }
+       
+       public User(){
+           
+       }
 
     /**
      * @return the UserId

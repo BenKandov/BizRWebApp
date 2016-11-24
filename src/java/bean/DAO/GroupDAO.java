@@ -114,4 +114,26 @@ public class GroupDAO {
         conn.close();
         return groups;
     }
+    public static int joinGroup(String userId, String groupId) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call joingroup(?,?)");
+            
+            ps.setString(2, userId);
+            ps.setString(1, groupId);
+            status = ps.executeUpdate();
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    
 }

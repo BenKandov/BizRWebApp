@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -113,4 +115,35 @@ public class LoginDao {
          conn.close();
          return status;
      }
+   
+   public static List<User> searchForUsers(String criteria) throws SQLException{
+        List<User> usrs = new ArrayList<User>();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("Select Distinct * from Buser where email like ?");
+            
+            ps.setString(1,"%" + criteria  + "%");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                User user = new User();
+                user.setEmail(rs.getString("email"));
+                usrs.add(user);
+                
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+
+        return usrs;
+       
+   }
 }
