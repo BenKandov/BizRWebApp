@@ -8,7 +8,10 @@ package bean.DAO;
 import bean.Message;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -40,4 +43,56 @@ public class MessageDao {
         conn.close();
         return status;
     }
+    public static int deleteMessage(String messageId) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call deletemessage(?)");
+            ps.setString(1, messageId);
+            status = ps.executeUpdate();
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    
+    public static List<Message> getReceivedMessages(String userId) throws SQLException{
+        List<Message> msgs = new ArrayList<Message>();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("Select B.email, M.subjecttext, M.content, M.messageid from message M, Buser B where M.receiverid = ? AND "
+                    + "M.receiverid = B.userid");
+            
+            ps.setString(1, userId);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String messageId = rs.getString("messageid");
+                String email = rs.getString("email");
+                String title = rs.getString("subjecttext");
+                String content = rs.getString("content");
+                Message msg = new Message(messageId,email,title,content,false);
+                msgs.add(msg);
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+
+        return msgs;
+    }
+    
 }

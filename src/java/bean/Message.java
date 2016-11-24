@@ -10,13 +10,22 @@ package bean;
  * @author benkandov
  */
 public class Message {
+    private String messageId;
     private String senderId,  receiverId;
     private String title, content;
+    private String email;
     
     public Message(String senderId, String receiverId, String title,
             String content){
         this.senderId = senderId;
         this.receiverId = receiverId;
+        this.title = title;
+        this.content = content;
+    }
+    
+    public Message(String messageId, String email, String title, String content, Boolean t){
+        this.messageId = messageId;
+        this.email = email;
         this.title = title;
         this.content = content;
     }
@@ -75,6 +84,34 @@ public class Message {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the messageId
+     */
+    public String getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * @param messageId the messageId to set
+     */
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
     
 }

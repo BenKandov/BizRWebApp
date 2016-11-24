@@ -29,8 +29,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Messages <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="createMessage.jsp">Create a Message</a></li>
-                          <li><a href="messages.jsp">Check your messages</a></li>
-             
+                          <li><a href="receivedMessages.jsp">Check your received messages</a></li>
+                          <li><a href="sentMessages.jsp">Review your sent messages</a></li>
                         </ul>
                       </li>
                     

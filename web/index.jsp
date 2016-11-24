@@ -43,9 +43,6 @@
             if(request.getParameter("signOut")!=null){
                 session.setAttribute("firstname", null);
                 response.sendRedirect("index.jsp");
-                
-                
-               
             }
             %>
         
