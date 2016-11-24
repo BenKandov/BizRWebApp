@@ -63,6 +63,28 @@ public class GroupDAO {
         conn.close();
         return status;
     }
+      public static int updateGroupName(String groupId, String newName) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("update bgroup set"
+                    + " groupname = ? where groupid = ?");
+            
+            ps.setString(1, newName);
+            ps.setString(2, groupId);
+            status = ps.executeUpdate();
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
     
     public static List<Group> getGroupsByOwner(String userid) throws SQLException{
         List<Group> groups = new ArrayList<Group>(); 

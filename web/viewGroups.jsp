@@ -58,9 +58,18 @@
                            <input type ="hidden" name="groupToDelete" value="<%out.print(g.getId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                        </form>
-                        <form method="get" action="updateGroup.jsp">
+                        <form method="get" action="updateGroupName.jsp">
+                             <div class="form-group row">
+                                <div class="form-group">
+                                      <label for="newnameinput" class="col-xs-2 col-form-label"> </label>
+                                     <div class="col-xs-10">
+                                         <input name="newname" class="form-control" type="text" value="" id="newnameinput">
+                                     </div>
+                               </div>
+                             </div>
+                            
                            <input type ="hidden" name="groupToUpdate" value="<%out.print(g.getId()); %>">
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success">Update Name</button>
                        </form>
                         
                     </div> 
