@@ -33,7 +33,13 @@
                           <li><a href="sentMessages.jsp">Review your sent messages</a></li>
                         </ul>
                       </li>
-                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Groups <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="createGroup.jsp">Create a Group</a></li>
+
+                        </ul>
+                      </li>
                     
                     <li>
                         <form method="get" action="index.jsp">
