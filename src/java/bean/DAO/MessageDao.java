@@ -62,7 +62,37 @@ public class MessageDao {
         conn.close();
         return status;
     }
-    
+    public static List<Message> getSentMessages(String userId) throws SQLException{
+        List<Message> msgs = new ArrayList<Message>();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("Select B.email, M.subjecttext, M.content, M.messageid from message M, Buser B where M.senderId = ? AND "
+                    + "M.receiverid = B.userid");
+            
+            ps.setString(1, userId);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String messageId = rs.getString("messageid");
+                String email = rs.getString("email");
+                String title = rs.getString("subjecttext");
+                String content = rs.getString("content");
+                Message msg = new Message(messageId,email,title,content,false);
+                msgs.add(msg);
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+
+        return msgs;
+    }
     public static List<Message> getReceivedMessages(String userId) throws SQLException{
         List<Message> msgs = new ArrayList<Message>();
         Connection conn = null;
@@ -71,7 +101,7 @@ public class MessageDao {
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("Select B.email, M.subjecttext, M.content, M.messageid from message M, Buser B where M.receiverid = ? AND "
-                    + "M.receiverid = B.userid");
+                    + "M.senderid = B.userid");
             
             ps.setString(1, userId);
             

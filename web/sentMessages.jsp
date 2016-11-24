@@ -4,6 +4,10 @@
     Author     : benkandov
 --%>
 
+<%@page import="bean.DAO.MessageDao"%>
+<%@page import="bean.Message"%>
+<%@page import="java.util.List"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +20,41 @@
     </head>
     <body>
         <%@include file="templates\userNavbar.jsp" %>
-        
+        <div class="container-fluid">
+            <div class="row">
+                <div class ="col-md-12 text-center">
+                    <h1> Received Messages </h1>
+                </div>
+            </div>
+            <% List<Message> msgs = MessageDao.getSentMessages(session.getAttribute("userid").toString());
+                for(Message m : msgs){
+                    
+                %>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        To: <%  out.print(m.getEmail()); %>
+                    </div>
+
+                </div>
+                    
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2> <%  out.print(m.getTitle()); %> </h2>
+                    </div>
+                </div>
+                    
+                <div class="row" style = "padding-bottom:20px" >
+                    <div class="col-md-12">
+                        <%  out.print(m.getContent()); %>
+                    </div>
+                </div>
+                
+  
+                    
+                
+                <%  } %>
+        </div>
         
     </body>
 </html>
