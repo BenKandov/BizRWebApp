@@ -81,6 +81,29 @@ public class LoginDao {
        return id;
    }
      
+   public static String getEmailFromUserId(String id) throws SQLException{
+       Connection conn = null;
+       String email = "";
+       try{
+           InitialContext ctx = new InitialContext();
+           DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+           conn = (Connection) ds.getConnection();
+           PreparedStatement ps = conn.prepareStatement("select email from"
+                   + " buser where userid = ?");
+           
+           ps.setString(1, id);
+           
+           
+           ResultSet rs = ps.executeQuery();
+           rs.next();
+           email = rs.getString("email");
+           
+       }catch(NamingException | SQLException e){
+           System.out.println(e);
+       }
+       conn.close();
+       return email;
+   }
      
      
    public static int update(User u) throws SQLException{

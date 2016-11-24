@@ -6,6 +6,7 @@
 package bean.DAO;
 
 import bean.Group;
+import bean.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,6 +135,56 @@ public class GroupDAO {
         }
         conn.close();
         return status;
+    }
+    public static int unJoinGroup(String userId, String groupId) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call unjoingroup(?,?)");
+            
+            ps.setString(2, userId);
+            ps.setString(1, groupId);
+            status = ps.executeUpdate();
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    public static List<User> getUsersInGroup( String groupId) throws SQLException{
+        List<User> usrs = new ArrayList<User>(); 
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from useringroup where"
+                    + "  groupid = ?");
+            
+         
+            ps.setString(1, groupId);
+            
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+              User usr= new User();
+              usr.setEmail( LoginDao.getEmailFromUserId(rs.getString("userid")));
+              usrs.add(usr);
+            }
+            
+         }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return usrs;
     }
     
 }

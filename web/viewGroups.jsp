@@ -71,12 +71,19 @@
                            <input type ="hidden" name="groupToUpdate" value="<%out.print(g.getId()); %>">
                         <button type="submit" class="btn btn-success">Update Name</button>
                        </form>
-                        <form method="get" action="searchForUsers.jsp">
+                        <form method="get" action="searchForUsers.jsp" style="padding-bottom:10px">
                             <input type ="hidden" name="id" value="<%out.print(g.getId()); %>">
                             <input type ="hidden" name="name" value="<%out.print(g.getName()); %>">
                             <button type="submit" class="btn btn-success">Search for New Members</button>
                                 
                         </form>
+                        <form method="get" action="viewGroupMembers.jsp">
+                            <input type ="hidden" name="id" value="<%out.print(g.getId()); %>">
+                            <input type ="hidden" name="name" value="<%out.print(g.getName()); %>">
+                             
+                            <button type="submit" class="btn btn-success">View Members</button>
+                        </form>
+                        
                         
                     </div> 
                 
