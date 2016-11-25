@@ -4,6 +4,7 @@
     Author     : benkandov
 --%>
 
+<%@page import="bean.DAO.LoginDao"%>
 <%@page import="bean.Group"%>
 <%@page import="java.util.List"%>
 <%@page import="bean.DAO.GroupDAO"%>
@@ -89,7 +90,47 @@
                 
                 </div>
             
-            <%  } %>
+            <%  }
+            %>
+             <div class="row">
+                <div class="col-md-12 ">
+                    <h2> Groups you are a member of: </h2>
+                </div>
+            </div>
+            <%
+                List<Group> groupsAgain = GroupDAO.getGroupsByMembership(session.getAttribute("userid").toString());
+                
+                for(Group g : groupsAgain){
+                
+             %>
+             <hr>
+          
+                    
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2> <%  out.print(g.getName()); %> </h2>
+                    </div>
+                </div>
+                    
+                <div class="row" style = "padding-bottom:20px" >
+                    <div class="col-md-12 text-center">
+                        <%  out.print(g.getType()); %>
+                    </div>
+                </div>
+                
+                    
+                    
+                <div class="row">
+                         <div class="col-md-12 text-center">
+                        <form method="get" action="unjoinGroup.jsp">
+                            <input type ="hidden" name="userid" value="<% out.print(session.getAttribute("userid").toString());  %>">
+                             <input type ="hidden" name="groupid" value="<% out.print(g.getId()); %>">
+                            <button type="submit" class="btn btn-danger">Leave Group</button>
+                        </form>
+                              </div>
+                        
+                    </div>
+             <% }%>
         </div>
         
         

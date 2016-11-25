@@ -115,6 +115,35 @@ public class GroupDAO {
         conn.close();
         return groups;
     }
+    public static List<Group> getGroupsByMembership(String userid) throws SQLException{
+        List<Group> groups = new ArrayList<Group>(); 
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select B.groupname, B.typeofgroup, B.groupid from bgroup B, "
+                    + "useringroup U where U.groupid = B.groupid and U.userid = ? ");
+                   
+            
+            ps.setString(1, userid);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String groupId = rs.getString("groupid");
+                String groupName = rs.getString("groupname");
+                String groupType = rs.getString("typeofgroup");
+                Group group = new Group(groupId,userid, groupName, groupType);
+                groups.add(group);
+            }
+            
+         }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return groups;
+    }
     public static int joinGroup(String userId, String groupId) throws SQLException{
         int status = 0;
         Connection conn = null;
