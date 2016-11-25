@@ -23,8 +23,11 @@
              
              if (status>0){
          %>
+         <%  if (request.getParameter("userDidIt")==null){ %>
          <h1> User successfully added!</h1>
-            
+          <% }else{ %>  
+          <h1> Successfully joined group!</h1>
+          <% } %>
          <%}  else{ %>
          <h1> That user was already in your group. </h1>
          <% } %>

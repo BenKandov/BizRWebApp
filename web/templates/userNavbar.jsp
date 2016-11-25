@@ -38,6 +38,7 @@
                         <ul class="dropdown-menu">
                           <li><a href="createGroup.jsp">Create a Group</a></li>
                           <li><a href="viewGroups.jsp">View Groups</a></li>
+                          <li><a href="searchForGroups.jsp">Search for Groups to Join</a></li>
                         </ul>
                       </li>
                     

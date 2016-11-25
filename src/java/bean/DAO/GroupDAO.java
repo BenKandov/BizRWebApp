@@ -186,5 +186,38 @@ public class GroupDAO {
         conn.close();
         return usrs;
     }
+    public static List<Group> searchForGroups(String criteria, String userid) throws SQLException{
+        List<Group> groups = new ArrayList<Group>(); 
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select B.groupid,B.groupname,B.typeofgroup from bgroup B"
+                    + " where"
+                    + " B.ownerid<>? and B.groupname like ? and not exists(select * from useringroup U where U.groupid = "
+                    + "B.groupid AND U.userid = ?) ");
+            
+            ps.setString(1, userid);
+            ps.setString(2, criteria);
+            ps.setString(3, userid);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String groupId = rs.getString("groupid");
+                String groupName = rs.getString("groupname");
+                String groupType = rs.getString("typeofgroup");
+                Group group = new Group(groupId,userid, groupName, groupType);
+                groups.add(group);
+            }
+            
+         }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return groups;
+    }
+    
     
 }
