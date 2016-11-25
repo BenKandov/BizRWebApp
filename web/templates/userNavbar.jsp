@@ -14,7 +14,7 @@
                      <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                   </button>
-                <a class="navbar-brand" href="#"> 
+                <a class="navbar-brand" href="yourWall.jsp"> 
                     <% out.print(  session.getAttribute("firstname") );
                        out.print(" ");
                        out.print( session.getAttribute("lastname"));

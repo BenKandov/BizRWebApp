@@ -12,48 +12,52 @@ import java.util.List;
  * @author benkandov
  */
 public class Post {
-    private int PostId;
-    private int AuthorId;
+    private String PostId;
+    private String AuthorId;
     private String Author;
     private String Content;
     private String PostedDate;
+    private String pageId;
     private List<Comment> Comments;
     private List<Like> Likes;
 
     
     
-    public Post(int postId, int authorId,String content, String postedDate,
+    public Post(String postId, String authorId,String content, String postedDate,
             List<Comment> comments,List<Like> likes){
         
         
+        
+    }
+    public Post(){
         
     }
         
     /**
      * @return the PostId
      */
-    public int getPostId() {
+    public String getPostId() {
         return PostId;
     }
 
     /**
      * @param PostId the PostId to set
      */
-    public void setPostId(int PostId) {
+    public void setPostId(String PostId) {
         this.PostId = PostId;
     }
 
     /**
      * @return the AuthorId
      */
-    public int getAuthorId() {
+    public String getAuthorId() {
         return AuthorId;
     }
 
     /**
      * @param AuthorId the AuthorId to set
      */
-    public void setAuthorId(int AuthorId) {
+    public void setAuthorId(String AuthorId) {
         this.AuthorId = AuthorId;
     }
 
@@ -125,6 +129,20 @@ public class Post {
      */
     public void setLikes(List<Like> Likes) {
         this.Likes = Likes;
+    }
+
+    /**
+     * @return the pageId
+     */
+    public String getPageId() {
+        return pageId;
+    }
+
+    /**
+     * @param pageId the pageId to set
+     */
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
     }
     
     
