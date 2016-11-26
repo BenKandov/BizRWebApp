@@ -25,9 +25,12 @@ public class Post {
     
     public Post(String postId, String authorId,String content, String postedDate,
             List<Comment> comments,List<Like> likes){
-        
-        
-        
+        this.postId = postId;
+        this.authorId = authorId;
+        this.content = content;
+        this.postedDate = postedDate;
+        this.comments = comments;
+        this.likes = likes;
     }
     public Post(){
         
