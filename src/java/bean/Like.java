@@ -10,7 +10,25 @@ package bean;
  * @author benkandov
  */
 public class Like {
-    int likerId;
+    private String likerId;
+    private String mediumId;
+    private boolean onPost;
     
+    public Like(String likerId, String mediumId, boolean onPost) {
+        this.likerId = likerId;
+        this.mediumId = mediumId;
+        this.onPost = onPost;
+    }
     
+    public String getLikerId() {
+        return likerId;
+    }
+    
+    public String getMediumId() {
+        return mediumId;
+    }
+    
+    public boolean onPost() {
+        return onPost;
+    }
 }
