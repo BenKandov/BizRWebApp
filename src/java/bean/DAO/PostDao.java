@@ -63,4 +63,22 @@ public class PostDao {
         return status;
     }
     
+    public static int deletePost(Post post) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call deletepost(?)");
+            
+            ps.setString(1, post.getPostId());
+            status = ps.executeUpdate();
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    
 }
