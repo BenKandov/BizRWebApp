@@ -11,4 +11,29 @@ package bean;
  */
 public class Comment {
     
+    private String postId;
+    private String authorId;
+    private String content;
+    
+    public Comment(String postId, String authorId, String content) {
+        this.postId = postId;
+        this.authorId = authorId;
+        this.content = content;
+    }
+    
+    public String getPostId() {
+        return postId;
+    }
+    
+    public String getAuthorId() {
+        return authorId;
+    }
+    
+    public String getContent() {
+        return content;
+    }
+    
+    public void setContent(String newContent) {
+        content = newContent;
+    }
 }
