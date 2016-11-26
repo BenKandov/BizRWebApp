@@ -47,9 +47,26 @@ public class RegistrationDao {
             System.out.println(e);
         }
      
-        return status;
-        
-        
-        
+        return status;   
+    }
+    
+    public static int createAccount(User user) {
+        int status = 0;
+        Connection conn = null;
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("Call createAccount(?)");
+
+            ps.setString(1, u.getUserId());
+
+            status = ps.executeUpdate();
+            
+            conn.close();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        return status;   
     }
 }
