@@ -1,5 +1,6 @@
 package bean.DAO;
 
+import bean.User;
 import bean.UserCreation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,7 +60,7 @@ public class RegistrationDao {
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("Call createAccount(?)");
 
-            ps.setString(1, u.getUserId());
+            ps.setString(1, Integer.toString(user.getUserId()));
 
             status = ps.executeUpdate();
             
