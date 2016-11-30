@@ -37,11 +37,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Groups <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="createGroup.jsp">Create a Group</a></li>
-                          <li><a href="viewGroups.jsp">View Groups</a></li>
+                          <li><a href="viewGroups.jsp">Your Groups</a></li>
                           <li><a href="searchForGroups.jsp">Search for Groups to Join</a></li>
                         </ul>
                       </li>
                     
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="searchForUserPages.jsp">Search for user pages</a></li>
+                          
+                        </ul>
+                      </li>
                     <li>
                         <form method="get" action="index.jsp">
                         <button type="submit" id="signOut" name="signOut" type="button" class="btn btn-default navbar-btn">

@@ -228,7 +228,7 @@ public class GroupDAO {
                     + "B.groupid AND U.userid = ?) ");
             
             ps.setString(1, userid);
-            ps.setString(2, criteria);
+            ps.setString(2, "%" + criteria + "%");
             ps.setString(3, userid);
             ResultSet rs = ps.executeQuery();
             

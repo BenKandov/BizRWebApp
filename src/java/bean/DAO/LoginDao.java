@@ -137,7 +137,7 @@ public class LoginDao {
          }
          conn.close();
          return status;
-     }
+    }
    
    public static List<User> searchForUsers(String criteria) throws SQLException{
         List<User> usrs = new ArrayList<User>();
