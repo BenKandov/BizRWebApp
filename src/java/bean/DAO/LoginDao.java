@@ -52,7 +52,8 @@ public class LoginDao {
          catch(NamingException | SQLException e){
              System.out.println(e);
          }
-         conn.close();
+         if (conn != null)
+            conn.close();
          return user;
     
          
@@ -77,7 +78,10 @@ public class LoginDao {
        }catch(NamingException | SQLException e){
            System.out.println(e);
        }
-       conn.close();
+       
+       if (conn != null)
+            conn.close();
+       
        return id;
    }
      
@@ -101,7 +105,10 @@ public class LoginDao {
        }catch(NamingException | SQLException e){
            System.out.println(e);
        }
-       conn.close();
+       
+       if (conn != null)
+            conn.close();
+       
        return email;
    }
      
@@ -135,9 +142,12 @@ public class LoginDao {
          catch(NamingException | SQLException e){
             System.out.println(e);
          }
-         conn.close();
+         
+         if (conn != null)
+            conn.close();
+         
          return status;
-    }
+     }
    
    public static List<User> searchForUsers(String criteria) throws SQLException{
         List<User> usrs = new ArrayList<User>();
@@ -164,9 +174,10 @@ public class LoginDao {
         catch(NamingException | SQLException e){
             System.out.println(e);
         }
-        conn.close();
+        
+        if (conn != null)
+            conn.close();
 
         return usrs;
-       
    }
 }

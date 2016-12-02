@@ -5,6 +5,8 @@
  */
 package bean;
 
+import java.util.List;
+
 /**
  *
  * @author benkandov
@@ -14,11 +16,13 @@ public class Comment {
     private String postId;
     private String authorId;
     private String content;
+    List<Like> likes;
     
-    public Comment(String postId, String authorId, String content) {
+    public Comment(String postId, String authorId, String content, List<Like> likes) {
         this.postId = postId;
         this.authorId = authorId;
         this.content = content;
+        this.likes = likes;
     }
     
     public String getPostId() {
@@ -35,5 +39,9 @@ public class Comment {
     
     public void setContent(String newContent) {
         content = newContent;
+    }
+    
+    public List<Like> getLikes() {
+        return likes;
     }
 }

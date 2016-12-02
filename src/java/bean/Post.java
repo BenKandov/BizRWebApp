@@ -12,14 +12,14 @@ import java.util.List;
  * @author benkandov
  */
 public class Post {
-    private String PostId;
-    private String AuthorId;
-    private String Author;
-    private String Content;
-    private String PostedDate;
+    private String postId;
+    private String authorId;
+    private String author;
+    private String content;
+    private String postedDate;
     private String pageId;
-    private List<Comment> Comments;
-    private List<Like> Likes;
+    private List<Comment> comments;
+    private List<Like> likes;
 
     
     
@@ -40,98 +40,98 @@ public class Post {
      * @return the PostId
      */
     public String getPostId() {
-        return PostId;
+        return postId;
     }
 
     /**
      * @param PostId the PostId to set
      */
     public void setPostId(String PostId) {
-        this.PostId = PostId;
+        this.postId = PostId;
     }
 
     /**
      * @return the AuthorId
      */
     public String getAuthorId() {
-        return AuthorId;
+        return authorId;
     }
 
     /**
      * @param AuthorId the AuthorId to set
      */
     public void setAuthorId(String AuthorId) {
-        this.AuthorId = AuthorId;
+        this.authorId = AuthorId;
     }
 
     /**
      * @return the Author
      */
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
     /**
      * @param Author the Author to set
      */
     public void setAuthor(String Author) {
-        this.Author = Author;
+        this.author = Author;
     }
 
     /**
      * @return the Content
      */
     public String getContent() {
-        return Content;
+        return content;
     }
 
     /**
      * @param Content the Content to set
      */
     public void setContent(String Content) {
-        this.Content = Content;
+        this.content = Content;
     }
 
     /**
      * @return the PostedDate
      */
     public String getPostedDate() {
-        return PostedDate;
+        return postedDate;
     }
 
     /**
      * @param PostedDate the PostedDate to set
      */
     public void setPostedDate(String PostedDate) {
-        this.PostedDate = PostedDate;
+        this.postedDate = PostedDate;
     }
 
     /**
      * @return the Comments
      */
     public List<Comment> getComments() {
-        return Comments;
+        return comments;
     }
 
     /**
      * @param Comments the Comments to set
      */
     public void setComments(List<Comment> Comments) {
-        this.Comments = Comments;
+        this.comments = Comments;
     }
 
     /**
      * @return the Likes
      */
     public List<Like> getLikes() {
-        return Likes;
+        return likes;
     }
 
     /**
      * @param Likes the Likes to set
      */
     public void setLikes(List<Like> Likes) {
-        this.Likes = Likes;
+        this.likes = Likes;
     }
 
     /**

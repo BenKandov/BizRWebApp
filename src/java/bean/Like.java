@@ -12,11 +12,13 @@ package bean;
 public class Like {
     private String likerId;
     private String mediumId;
+    private String timeLiked;
     private boolean onPost;
     
-    public Like(String likerId, String mediumId, boolean onPost) {
+    public Like(String likerId, String mediumId, String timeLiked, boolean onPost) {
         this.likerId = likerId;
         this.mediumId = mediumId;
+        this.timeLiked = timeLiked;
         this.onPost = onPost;
     }
     
@@ -26,6 +28,10 @@ public class Like {
     
     public String getMediumId() {
         return mediumId;
+    }
+    
+    public String getTimeLiked() {
+        return timeLiked;
     }
     
     public boolean onPost() {
