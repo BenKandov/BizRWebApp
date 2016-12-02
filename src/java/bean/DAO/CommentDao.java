@@ -32,7 +32,7 @@ public class CommentDao {
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection)ds.getConnection();
             
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM BComments "
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM BComment "
                     + "WHERE postId = ?");
             ps.setString(1, postId);
             

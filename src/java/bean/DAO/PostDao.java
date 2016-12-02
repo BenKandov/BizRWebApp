@@ -63,16 +63,16 @@ public class PostDao {
         return status;
     }
     
-    public static int deletePost(Post post) throws SQLException {
+    public static int deletePost(String postid) throws SQLException {
         int status = 0;
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("call deletepost(?)");
+            PreparedStatement ps = conn.prepareStatement("call removepost(?)");
             
-            ps.setString(1, post.getPostId());
+            ps.setString(1,postid);
             
             status = ps.executeUpdate();
         } catch(NamingException | SQLException e){

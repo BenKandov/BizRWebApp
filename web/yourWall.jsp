@@ -4,6 +4,10 @@
     Author     : benkandov
 --%>
 
+<%@page import="bean.DAO.LoginDao"%>
+<%@page import="bean.Post"%>
+<%@page import="bean.DAO.PostDao"%>
+<%@page import="java.util.List"%>
 <%@page import="bean.DAO.PageDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,6 +47,61 @@
                  </form>
                 </div>
             </div>
+                        
+            <% 
+            List<Post> posts = PageDao.GetPosts( PageDao.getPageIdFromUserId(session.getAttribute("userid").toString()));
+                for(Post p : posts){
+            %>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <b> Author</b>  <%  out.print(LoginDao.getEmailFromUserId(p.getAuthorId()) ); %>
+                    
+                </div>
+                <div class="col-md-3">
+                    <b> Date: </b> <% out.print(p.getPostedDate()); %>
+                </div>
+            </div>
+            
+            <div class="row" style="padding-bottom:40px">
+                <div class="col-md-12 text-center" style="font-size:16px">
+                    <%  out.print(p.getContent()); %>
+                </div>
+            </div>
+            
+            <div class="row" style="padding-bottom:50px">
+                <div class="col-md-2">
+                    <a href=""> Comments ( <% out.print(p.getComments().size()); %> ) </a>
+                </div>
+                                
+              
+                
+                <div class="col-md-2">
+                    <a href=""> Likes ( <% out.print(p.getLikes().size()); %> ) </a>
+                </div>
+
+            </div>
+                
+            <div class="row" style="padding-bottom:50px">
+                <div class="col-md-12 text-center">
+                     <form method="get" action="deletePost.jsp">
+                        <input type ="hidden" name="postToDelete" value="<%out.print(p.getPostId()); %>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <form method="get" action="commentPost.jsp">
+                        <input type ="hidden" name="postToComment" value="<%out.print(p.getPostId()); %>">
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </form>
+                    <form method="get" action="likePost.jsp">
+                        <input type ="hidden" name="postToLike" value="<%out.print(p.getPostId()); %>">
+                        <button type="submit" class="btn btn-success">Like</button>
+                    </form>
+                </div>
+            </div>
+            
+            <%} %>
             
         </div>
     </body>

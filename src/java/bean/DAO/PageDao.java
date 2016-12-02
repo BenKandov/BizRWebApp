@@ -31,7 +31,7 @@ public class PageDao {
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Post WHERE"
-                    + "pageid = ?");
+                    + " pageid = ?");
             
             ps.setString(1, pageid);
             

@@ -31,11 +31,11 @@
                     
                 %>
                 <hr>
-                <div class="row">
+                
+                <div class="row">                    
                     <div class="col-md-12">
                         To: <%  out.print(m.getEmail()); %>
-                    </div>
-
+                    </div>                    
                 </div>
                     
                 <div class="row">
