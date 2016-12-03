@@ -39,7 +39,11 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h2>  <% out.print(g.getName());  %> </h2>
+                        <form action="groupPage.jsp">
+                            <h2>  <% out.print(g.getName());  %> </h2>
+                             <input type ="hidden" name="groupId" value="<%out.print(g.getId()); %>">
+                            <button type="submit" class="btn btn-primary">Visit Group Page</button>
+                        </form>
                     </div>
                 </div>
                     
