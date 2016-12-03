@@ -81,7 +81,46 @@ public class PostDao {
         conn.close();
         return status;
     }
-    
+    public static int likePost(String postid, String userid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call likepost(?,?,curdate())");
+            
+            ps.setString(1, userid);
+            ps.setString(2, postid);
+            
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    public static int unlikePost(String postid, String userid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call unlikepost(?,?)");
+            
+            ps.setString(1, userid);
+            
+            ps.setString(2, postid);
+            System.out.println(ps);
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        
+        return status;
+    }
     public static int editPost(Post post) throws SQLException {
         int status = 0;
         Connection conn = null;
