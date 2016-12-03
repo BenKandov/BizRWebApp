@@ -10,11 +10,11 @@ package bean;
  * @author benkandov
  */
 public class User {
-    private int UserId;
+    private String UserId;
     private String FirstName, LastName, Email, PhoneNumber, Address,
         State,City, ZipCode, CreditCard, CreationDate;
     
-    public User(int userid, String fname, String lname,
+    public User(String userid, String fname, String lname,
             String email, String pnumber, String address, String state,
             String city, String zip, String credit, String creation){
         this.UserId = userid;
@@ -51,14 +51,14 @@ public class User {
     /**
      * @return the UserId
      */
-    public int getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
     /**
      * @param UserId the UserId to set
      */
-    public void setUserId(int UserId) {
+    public void setUserId(String UserId) {
         this.UserId = UserId;
     }
 

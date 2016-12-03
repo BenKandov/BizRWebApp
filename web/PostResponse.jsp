@@ -31,7 +31,11 @@
             if (status > 0){
             %>
             <h1> Post successfully made! </h1>
-            <% } else{ %>
+            
+            <%
+                            String referer = request.getHeader("Referer");
+            response.sendRedirect(referer);
+} else{ %>
             <h1> Post too long. </h1>
             <% } %>
             

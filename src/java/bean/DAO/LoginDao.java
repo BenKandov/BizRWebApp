@@ -39,7 +39,7 @@ public class LoginDao {
             
             rs.next();
             System.out.println(rs);
-            user =  new User( rs.getInt("userid"),rs.getString("FirstName"),
+            user =  new User( rs.getString("userid"),rs.getString("FirstName"),
             rs.getString("lastname"), rs.getString("email"),rs.getString("phonenumber"),
             rs.getString("address"),rs.getString("state"),rs.getString("city"),rs.getString("zipcode"),
             rs.getString("creditcard"), rs.getString("creationdate"));
@@ -180,4 +180,40 @@ public class LoginDao {
 
         return usrs;
    }
+   public static User getUserFromUserId(String userid ) throws SQLException{
+         User user = null;
+         Connection conn = null;
+         try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from buser where userid =?");
+            
+          
+            ps.setString(1, userid);
+     
+            ResultSet rs = ps.executeQuery();
+            
+            
+            rs.next();
+            System.out.println(rs);
+            user =  new User( rs.getString("userid"),rs.getString("FirstName"),
+            rs.getString("lastname"), rs.getString("email"),rs.getString("phonenumber"),
+            rs.getString("address"),rs.getString("state"),rs.getString("city"),rs.getString("zipcode"),
+            rs.getString("creditcard"), rs.getString("creationdate"));
+            
+            
+            
+           
+            
+         }
+         catch(NamingException | SQLException e){
+             System.out.println(e);
+         }
+         if (conn != null)
+            conn.close();
+         return user;
+    
+         
+     }
 }

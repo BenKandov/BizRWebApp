@@ -60,7 +60,7 @@ public class RegistrationDao {
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("Call createAccount(?)");
 
-            ps.setString(1, Integer.toString(user.getUserId()));
+            ps.setString(1, (user.getUserId()));
 
             status = ps.executeUpdate();
             
