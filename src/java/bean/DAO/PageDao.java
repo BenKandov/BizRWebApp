@@ -20,6 +20,8 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import java.sql.DriverManager;
+
 
 public class PageDao {
     
@@ -33,12 +35,11 @@ public class PageDao {
     }
     
     public static String getPageIdFromUserId(String userid) throws SQLException{
+        //class.forName("com.mysql.jdbc.Driver");
         String pageid = "";
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("select pageid from bpage where"
                     + " ownerid = ?");
             
@@ -52,7 +53,7 @@ public class PageDao {
          
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();

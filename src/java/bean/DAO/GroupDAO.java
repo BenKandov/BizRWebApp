@@ -8,6 +8,7 @@ package bean.DAO;
 import bean.Group;
 import bean.User;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,9 +27,7 @@ public class GroupDAO {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call creategroup(?,?,?)");
             
             ps.setString(1, group.getOwnerId());
@@ -38,7 +37,7 @@ public class GroupDAO {
             status = ps.executeUpdate();
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -49,16 +48,14 @@ public class GroupDAO {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call deletegroup(?)");
             ps.setString(1, groupId);
             status = ps.executeUpdate();
             
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -68,9 +65,7 @@ public class GroupDAO {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("update bgroup set"
                     + " groupname = ? where groupid = ?");
             
@@ -80,7 +75,7 @@ public class GroupDAO {
             
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -91,9 +86,7 @@ public class GroupDAO {
         List<Group> groups = new ArrayList<Group>(); 
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("select * from bgroup where"
                     + " ownerid=?");
             
@@ -109,7 +102,7 @@ public class GroupDAO {
             }
             
          }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -119,9 +112,7 @@ public class GroupDAO {
         List<Group> groups = new ArrayList<Group>(); 
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("select B.groupname, B.typeofgroup, B.groupid from bgroup B, "
                     + "useringroup U where U.groupid = B.groupid and U.userid = ? ");
                    
@@ -138,7 +129,7 @@ public class GroupDAO {
             }
             
          }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -148,9 +139,7 @@ public class GroupDAO {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call joingroup(?,?)");
             
             ps.setString(2, userId);
@@ -159,7 +148,7 @@ public class GroupDAO {
             
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -169,9 +158,7 @@ public class GroupDAO {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call unjoingroup(?,?)");
             
             ps.setString(2, userId);
@@ -180,7 +167,7 @@ public class GroupDAO {
             
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -190,9 +177,7 @@ public class GroupDAO {
         List<User> usrs = new ArrayList<User>(); 
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("select * from useringroup where"
                     + "  groupid = ?");
             
@@ -209,7 +194,7 @@ public class GroupDAO {
             }
             
          }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -219,16 +204,14 @@ public class GroupDAO {
         List<Group> groups = new ArrayList<Group>(); 
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("select B.groupid,B.groupname,B.typeofgroup from bgroup B"
                     + " where"
                     + " B.ownerid<>? and B.groupname like ? and not exists(select * from useringroup U where U.groupid = "
                     + "B.groupid AND U.userid = ?) ");
             
             ps.setString(1, userid);
-            ps.setString(2, criteria);
+            ps.setString(2, "%" + criteria + "%");
             ps.setString(3, userid);
             ResultSet rs = ps.executeQuery();
             
@@ -241,7 +224,7 @@ public class GroupDAO {
             }
             
          }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();

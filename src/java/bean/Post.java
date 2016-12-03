@@ -23,14 +23,14 @@ public class Post {
 
     
     
-    public Post(String postId, String authorId,String content, String postedDate,
-            List<Comment> comments,List<Like> likes){
-        this.postId = postId;
-        this.authorId = authorId;
-        this.content = content;
-        this.postedDate = postedDate;
-        this.comments = comments;
-        this.likes = likes;
+    public Post(String PostId, String AuthorId,String Content, String PostedDate,
+            List<Comment> Comments,List<Like> Likes){
+        this.PostId = PostId;
+        this.AuthorId = AuthorId;
+        this.Content = Content;
+        this.PostedDate = PostedDate;
+        this.Comments = Comments;
+        this.Likes = Likes;
     }
     public Post(){
         

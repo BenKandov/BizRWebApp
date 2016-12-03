@@ -13,25 +13,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.sql.DataSource;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+
+import java.sql.DriverManager;
 
 /**
  *
  * @author benkandov
  */
 public class LoginDao {
-     public static User login(UserCreation u) throws SQLException{
+     public static User login(UserCreation u) throws SQLException, ClassNotFoundException{
+         Class.forName("com.mysql.jdbc.Driver");
          User user = null;
-         Connection conn = null;
+         Connection conn=null;
          try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("Call signIn(?,?)");
             
-          
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getPassword());
             ResultSet rs = ps.executeQuery();
@@ -44,12 +41,8 @@ public class LoginDao {
             rs.getString("address"),rs.getString("state"),rs.getString("city"),rs.getString("zipcode"),
             rs.getString("creditcard"), rs.getString("creationdate"));
             
-            
-            
-           
-            
          }
-         catch(NamingException | SQLException e){
+         catch(SQLException e){
              System.out.println(e);
          }
          conn.close();
@@ -61,9 +54,7 @@ public class LoginDao {
        Connection conn = null;
        String id = "";
        try{
-           InitialContext ctx = new InitialContext();
-           DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-           conn = (Connection) ds.getConnection();
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
            PreparedStatement ps = conn.prepareStatement("select userid from"
                    + " buser where email = ?");
            
@@ -74,7 +65,7 @@ public class LoginDao {
            rs.next();
            id = rs.getString("userid");
            
-       }catch(NamingException | SQLException e){
+       }catch(SQLException e){
            System.out.println(e);
        }
        conn.close();
@@ -85,9 +76,7 @@ public class LoginDao {
        Connection conn = null;
        String email = "";
        try{
-           InitialContext ctx = new InitialContext();
-           DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-           conn = (Connection) ds.getConnection();
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
            PreparedStatement ps = conn.prepareStatement("select email from"
                    + " buser where userid = ?");
            
@@ -98,7 +87,7 @@ public class LoginDao {
            rs.next();
            email = rs.getString("email");
            
-       }catch(NamingException | SQLException e){
+       }catch(SQLException e){
            System.out.println(e);
        }
        conn.close();
@@ -110,9 +99,7 @@ public class LoginDao {
          int status = 0;
          Connection conn = null;
          try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("UPDATE BUSER SET "
                     + "firstname = ?, lastname = ?, phonenumber = ?, address =?,"
                     + "state = ?, city = ?, zipcode = ?, creditcard = ? where "
@@ -132,7 +119,7 @@ public class LoginDao {
             status = ps.executeUpdate();
             
          }
-         catch(NamingException | SQLException e){
+         catch(SQLException e){
             System.out.println(e);
          }
          conn.close();
@@ -143,9 +130,7 @@ public class LoginDao {
         List<User> usrs = new ArrayList<User>();
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("Select Distinct * from Buser where email like ?");
             
             ps.setString(1,"%" + criteria  + "%");
@@ -161,7 +146,7 @@ public class LoginDao {
             }
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();

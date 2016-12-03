@@ -23,7 +23,14 @@
             </div>  
             <div class ="collapse navbar-collapse" id="user-toolbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="updateInfoPage.jsp"> Update User Info</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="updateInfoPage.jsp"> Update User Info</a></li>
+                                <li><a href="accountPage.jsp">My Account</a></li>
+                            </ul>
+                    </li>
+                    
                   
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Messages <span class="caret"></span></a>
@@ -37,11 +44,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Groups <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="createGroup.jsp">Create a Group</a></li>
-                          <li><a href="viewGroups.jsp">View Groups</a></li>
+                          <li><a href="viewGroups.jsp">My Groups</a></li>
                           <li><a href="searchForGroups.jsp">Search for Groups to Join</a></li>
                         </ul>
                       </li>
-                    
+                      <li><a href="advertisementPage.jsp">Buy products</a></li>
                     <li>
                         <form method="get" action="index.jsp">
                         <button type="submit" id="signOut" name="signOut" type="button" class="btn btn-default navbar-btn">

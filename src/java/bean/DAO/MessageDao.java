@@ -7,6 +7,7 @@ package bean.DAO;
 
 import bean.Message;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,9 +26,7 @@ public class MessageDao {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call createmessage(?,?,?,?)");
             
             ps.setString(1,msg.getSenderId());
@@ -37,7 +36,7 @@ public class MessageDao {
             
             status = ps.executeUpdate();
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -47,16 +46,14 @@ public class MessageDao {
         int status = 0;
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("call deletemessage(?)");
             ps.setString(1, messageId);
             status = ps.executeUpdate();
             
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -66,9 +63,7 @@ public class MessageDao {
         List<Message> msgs = new ArrayList<Message>();
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("Select B.email, M.subjecttext, M.content, M.messageid from message M, Buser B where M.senderId = ? AND "
                     + "M.receiverid = B.userid");
             
@@ -86,7 +81,7 @@ public class MessageDao {
             }
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
@@ -97,9 +92,7 @@ public class MessageDao {
         List<Message> msgs = new ArrayList<Message>();
         Connection conn = null;
         try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/groupTest", "root", "root");
             PreparedStatement ps = conn.prepareStatement("Select B.email, M.subjecttext, M.content, M.messageid from message M, Buser B where M.receiverid = ? AND "
                     + "M.senderid = B.userid");
             
@@ -117,7 +110,7 @@ public class MessageDao {
             }
             
         }
-        catch(NamingException | SQLException e){
+        catch(SQLException e){
             System.out.println(e);
         }
         conn.close();
