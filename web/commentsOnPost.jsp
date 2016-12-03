@@ -89,7 +89,7 @@
                 <hr>
                          <div class="row" style="padding-bottom:50px">
                 <div class="col-md-12 text-center">
-                    <% if(c.getAuthorId() == session.getAttribute("userid").toString()){ %>
+                    <% if(c.getAuthorId().equals(session.getAttribute("userid").toString())){ %>
                      <form method="get" action="deleteComment.jsp">
                         <input type ="hidden" name="commentToDelete" value="<%out.print(c.getCommentId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>

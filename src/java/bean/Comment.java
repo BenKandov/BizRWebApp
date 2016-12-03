@@ -29,6 +29,10 @@ public class Comment {
         this.datePosted = dateposted;
     }
     
+    public Comment(){
+        
+    }
+    
     public String getPostId() {
         return postId;
     }
@@ -75,5 +79,19 @@ public class Comment {
      */
     public void setCommentId(String commentId) {
         this.commentId = commentId;
+    }
+
+    /**
+     * @param authorId the authorId to set
+     */
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+
+    /**
+     * @param postId the postId to set
+     */
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 }
