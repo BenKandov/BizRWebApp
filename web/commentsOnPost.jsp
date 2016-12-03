@@ -85,15 +85,27 @@
                         <% out.print(c.getContent()); %>
                     </div>
                 </div>
+                    <div class="row">
+                                      <div class="col-md-2">
+                    <a href=""> Likes ( <% out.print(c.getLikes().size()); %> ) </a>
+                </div>
+                        
+                    </div>
+               
                 
-                <hr>
-                         <div class="row" style="padding-bottom:50px">
+                <div class="row" style="padding-bottom:50px">
                 <div class="col-md-12 text-center">
                     <% if(c.getAuthorId().equals(session.getAttribute("userid").toString())){ %>
                      <form method="get" action="deleteComment.jsp">
                         <input type ="hidden" name="commentToDelete" value="<%out.print(c.getCommentId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
+                    <form method="get" action="modifyComment.jsp">
+                        <input type ="hidden" name="commentToModify" value="<%out.print(c.getCommentId()); %>">
+                        <input type ="hidden" name="commentContent" value="<%out.print(c.getContent()); %>">
+                        <button type="submit" class="btn btn-primary">Modify</button>
+                    </form>
+                      
                 <%
              }
                         List<String> ids = new ArrayList<String>();
@@ -120,6 +132,8 @@
                     <%} %>
                 </div>
             </div>
+              <hr>
+              
              <% } %>
              
         </div>
