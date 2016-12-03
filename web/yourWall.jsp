@@ -88,6 +88,14 @@
                 
             <div class="row" style="padding-bottom:50px">
                 <div class="col-md-12 text-center">
+                       <% if(p.getAuthorId().equals(session.getAttribute("userid").toString())){ %>
+                        <form method="get" action="modifyPost.jsp">
+                        <input type ="hidden" name="postToModify" value="<%out.print(p.getPostId()); %>">
+                        <input type ="hidden" name="postContent" value="<%out.print(p.getContent()); %>">
+                        <button type="submit" class="btn btn-primary">Modify</button>
+                    </form>
+                       
+                       <%} %>
                      <form method="get" action="deletePost.jsp">
                         <input type ="hidden" name="postToDelete" value="<%out.print(p.getPostId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>

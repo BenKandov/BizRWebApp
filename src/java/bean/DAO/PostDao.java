@@ -176,4 +176,23 @@ public class PostDao {
         
         return post;
     }
+    public static int modifyPost(String postid, String content) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call modifypost(?,?)");
+            
+            ps.setString(1, postid);
+            ps.setString(2, content);
+            
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
 }
