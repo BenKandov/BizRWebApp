@@ -86,4 +86,31 @@ public class PageDao {
 
         return pageid;
     }
+    public static String getPageIdFromGroupId(String groupid) throws SQLException{
+        String pageid = "";
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select pageid from bpage where"
+                    + " groupid = ?");
+            
+            ps.setString(1, groupid);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            rs.next();
+               
+            pageid = rs.getString("pageid");
+         
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+
+        return pageid;
+    }
 }
