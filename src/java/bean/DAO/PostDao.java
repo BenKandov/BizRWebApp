@@ -15,6 +15,7 @@ import bean.Like;
 import bean.Post;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,5 +141,39 @@ public class PostDao {
         conn.close();
         return status;
     }
-    
+    public static Post getPostById(String postid) throws SQLException {
+        Post post = null;
+        Connection conn = null;
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Post WHERE"
+                    + " postid = ?");
+            
+            ps.setString(1, postid);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                post = new Post(
+                        rs.getString("postid"),
+                        rs.getString("authorid"),
+                        rs.getString("content"),
+                        rs.getString("postedDate"),
+                        rs.getString("pageId"),
+                        CommentDao.getComments(rs.getString("postid")),
+                        LikeDao.getPostLikes(rs.getString("postid"))
+                );
+                
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        
+        return post;
+    }
 }

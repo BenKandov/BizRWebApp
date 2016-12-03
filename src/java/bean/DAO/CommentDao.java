@@ -40,10 +40,11 @@ public class CommentDao {
             
             while (rs.next()) {
                 Comment comment = new Comment(
+                    rs.getString("commentid"),
                     rs.getString("postId"),
                     rs.getString("authorId"),
                     rs.getString("content"),
-                    LikeDao.getCommentLikes(rs.getString("postId"), rs.getString("commentId"))
+                    LikeDao.getCommentLikes(rs.getString("postId"), rs.getString("commentId")), rs.getString("dateposted")
                 );
                 comments.add(comment);
             }

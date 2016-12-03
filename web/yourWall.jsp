@@ -92,7 +92,7 @@
                         <input type ="hidden" name="postToDelete" value="<%out.print(p.getPostId()); %>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <form method="get" action="commentPost.jsp">
+                    <form method="get" action="commentsOnPost.jsp">
                         <input type ="hidden" name="postToComment" value="<%out.print(p.getPostId()); %>">
                         <button type="submit" class="btn btn-primary">Comment</button>
                     </form>

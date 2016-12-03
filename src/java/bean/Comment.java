@@ -17,12 +17,16 @@ public class Comment {
     private String authorId;
     private String content;
     List<Like> likes;
+    private String datePosted;
+    private String commentId;
     
-    public Comment(String postId, String authorId, String content, List<Like> likes) {
+    public Comment(String commentId,String postId, String authorId, String content, List<Like> likes, String dateposted) {
+        this.commentId = commentId;
         this.postId = postId;
         this.authorId = authorId;
         this.content = content;
         this.likes = likes;
+        this.datePosted = dateposted;
     }
     
     public String getPostId() {
@@ -43,5 +47,33 @@ public class Comment {
     
     public List<Like> getLikes() {
         return likes;
+    }
+
+    /**
+     * @return the datePosted
+     */
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    /**
+     * @param datePosted the datePosted to set
+     */
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
+    }
+
+    /**
+     * @return the commentId
+     */
+    public String getCommentId() {
+        return commentId;
+    }
+
+    /**
+     * @param commentId the commentId to set
+     */
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 }
