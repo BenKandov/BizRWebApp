@@ -20,7 +20,8 @@
             
             int status = CommentDao.likeComment(request.getParameter("commentToLike"),request.getParameter("id"));
             
-            response.sendRedirect("yourWall.jsp");
+            String referer = request.getHeader("Referer");
+            response.sendRedirect(referer);
             %>
     </body>
 </html>

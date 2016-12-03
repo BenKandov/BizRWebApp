@@ -21,7 +21,8 @@
             
             int status = CommentDao.deleteComment(request.getParameter("commentToDelete"));
             
-            response.sendRedirect("yourWall.jsp");
+            String referer = request.getHeader("Referer");
+            response.sendRedirect(referer);
             %>
     </body>
 </html>

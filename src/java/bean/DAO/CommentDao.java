@@ -118,4 +118,26 @@ public class CommentDao {
         conn.close();
         return status;
     }
+    
+    public static int unlikeComment(String commentid, String userid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call unlikecomment(?,?)");
+            
+            ps.setString(1, userid);
+            
+            ps.setString(2, commentid);
+            System.out.println(ps);
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        
+        return status;
+    }
 }
