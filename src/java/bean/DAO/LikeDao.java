@@ -57,7 +57,7 @@ public class LikeDao {
         return likes;
     }
     
-    public static List<Like> getCommentLikes(String postId, String commentId) throws SQLException {
+    public static List<Like> getCommentLikes( String commentId) throws SQLException {
         ArrayList<Like> likes = new ArrayList();
         Connection conn = null;
         try {
@@ -66,15 +66,15 @@ public class LikeDao {
             conn = (Connection)ds.getConnection();
             
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM CommentLike "
-                    + "WHERE postId = ?");
-            ps.setString(1, postId);
+                    + "WHERE commentId = ?");
+            ps.setString(1, commentId);
             
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
                 Like like = new Like(
                     rs.getString("likerId"),
-                    rs.getString("postId"),
+                    rs.getString("commentId"),
                     rs.getString("timeLiked"),
                     false
                 );

@@ -44,7 +44,7 @@ public class CommentDao {
                     rs.getString("postId"),
                     rs.getString("authorId"),
                     rs.getString("content"),
-                    LikeDao.getCommentLikes(rs.getString("postId"), rs.getString("commentId")), rs.getString("dateposted")
+                    LikeDao.getCommentLikes(rs.getString("commentId")), rs.getString("dateposted")
                 );
                 comments.add(comment);
             }
@@ -91,6 +91,25 @@ public class CommentDao {
             PreparedStatement ps = conn.prepareStatement("call removecomment(?)");
             
             ps.setString(1,commentid);
+            
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+    public static int likeComment(String commentid, String userid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call likecomment(?,?,curdate())");
+            
+            ps.setString(1, userid);
+            ps.setString(2, commentid);
             
             status = ps.executeUpdate();
         } catch(NamingException | SQLException e){

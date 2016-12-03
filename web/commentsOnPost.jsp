@@ -100,7 +100,7 @@
                         for (Like l: c.getLikes()){
                             ids.add(l.getLikerId());
                         }
-                        
+                      
                        if(ids.contains(session.getAttribute("userid").toString())){
                           %>    
                      <form method="get" action="unlikeComment.jsp">
