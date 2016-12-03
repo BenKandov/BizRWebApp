@@ -120,7 +120,7 @@
                        if(ids.contains(session.getAttribute("userid").toString())){
                           %>    
                      <form method="get" action="unlikePost.jsp">
-                        <input type ="hidden" name="id" value="<%out.print(usr.getUserId()); %>">
+                        <input type ="hidden" name="id" value="<%out.print(session.getAttribute("userid")); %>">
                         <input type ="hidden" name="postToUnLike" value="<%out.print(p.getPostId()); %>">
                         <button type="submit" class="btn btn-danger">UnLike</button>
                     </form>
@@ -128,7 +128,7 @@
                     <%  }else{%>
                                                 
                     <form method="get" action="likePost.jsp">
-                        <input type ="hidden" name="id" value="<%out.print(usr.getUserId()); %>">
+                        <input type ="hidden" name="id" value="<%out.print(session.getAttribute("userid")); %>">
                         <input type ="hidden" name="postToLike" value="<%out.print(p.getPostId()); %>">
                         <button type="submit" class="btn btn-success">Like</button>
                     </form>
