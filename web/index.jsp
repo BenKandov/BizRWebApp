@@ -116,13 +116,19 @@
                    <div class="row">
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="allCompanyItems.jsp" role="button">List all items by a company </a>
-                     </div>   
+                     </div>  
+                   </div>
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="mostActiveItems.jsp" role="button">List most active items </a>
                      </div>  
-            </div>
-              
+                    </div>
+                        
+                     <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="getTransactions.jsp" role="button">Get list of transactions </a>
+                     </div>  
+                    </div>             
               
               </div>
                 <%
