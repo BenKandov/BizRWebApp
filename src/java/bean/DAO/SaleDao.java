@@ -153,5 +153,43 @@ public class SaleDao {
         }
         conn.close();
         return users;
-    }  
+    }
+    
+   public static List<String> getMostRevenueCustomer() throws SQLException{
+        List<String> customers = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from mostRevenueCustomer");
+         
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                
+                
+                 String s = "UserID: " + rs.getString("userid")
+                         + "Total Revenue: " + rs.getString("amountspent");
+                       
+                customers.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return customers;
+        
+        
+    }
+    
+    
 }

@@ -145,7 +145,11 @@
                                </div>
                                </div>
                     </form>   
- 
+                     <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="mostRevenueCustomer.jsp" role="button"> Find most revenue customer </a>
+                     </div>  
+                    </div>  
               </div>
                 <%
 
