@@ -9,7 +9,10 @@ import bean.Ad;
 import bean.Sale;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -19,15 +22,50 @@ import javax.sql.DataSource;
  * @author benkandov
  */
 public class SaleDao {
+    public static List<String> monthlySalesReport(int month) throws SQLException{
+        List<String> sales = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call monthlysalesreport(?)");
+            java.sql.Date sqlDate = new java.sql.Date(1996,month-1,1);
+            ps.setDate(1, sqlDate);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String s = rs.getString("numunits") + "       units of "  
+                        + rs.getString("itemname") + " sold on " +
+                        rs.getString("dateofsale");  
+                       
+                sales.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return sales;
+        
+        
+    }
+    
     public static int makeSale(Sale s) throws SQLException{
-            int status = 0;
+        int status = 0;
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("call insertsale(?,?,?)");
-            System.out.println(s.getAdId() + "gey");
+           
             ps.setString(1, s.getAdId());
             ps.setString(2, s.getAccountId());
              ps.setString(3, s.getNumUnits());

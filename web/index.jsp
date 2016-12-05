@@ -107,7 +107,7 @@
               <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            <a class="btn btn-success" href="customerInfo.jsp" role="button">Most Active Items </a>
+                            <a class="btn btn-success" href="monthlySalesReport.jsp" role="button">Get Monthly Sales Report </a>
                      </div>   
               </div>
               
