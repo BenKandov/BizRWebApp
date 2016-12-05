@@ -75,7 +75,7 @@
               </div>
               <div class="row">
                   <div class="col-lg-12 text-center">
-                        <a class="btn btn-success" href="deleteAd.jsp" role="button">Record Transaction</a>
+                        <a class="btn btn-success" href="recordTransaction.jsp" role="button">Record Transaction</a>
                  </div>   
               </div>
                
