@@ -8,7 +8,10 @@ package bean.DAO;
 import bean.Ad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -62,4 +65,35 @@ public class AdvertisementDao {
         conn.close();
         return status;
     }
+   public static List<String> itemsList() throws SQLException{
+        List<String> items = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select distinct itemname"
+                    + " from advertisement");
+          
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String s = rs.getString("itemname");                       
+                items.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return items;
+        
+        
+    }
+    
 }

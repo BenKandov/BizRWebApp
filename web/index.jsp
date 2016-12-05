@@ -109,7 +109,12 @@
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="monthlySalesReport.jsp" role="button">Get Monthly Sales Report </a>
                      </div>   
-              </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="allItemsList.jsp" role="button">List all items being advertised </a>
+                     </div>   
+                    
+            </div>
               
               
               </div>
