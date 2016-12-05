@@ -68,7 +68,7 @@ public class InterestDao {
         return status;
     }
     
-    public List<Ad> adsByAccount(String accountNumber) throws SQLException {
+    public List<Ad> adsByAccountInterests(String accountNumber) throws SQLException {
         ArrayList<Ad> ads = new ArrayList();
         Connection conn = null;
         
