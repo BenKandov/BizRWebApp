@@ -121,24 +121,37 @@ public class SaleDao {
         return transactions;
     }  
     
-    public static int makeSale(Sale s) throws SQLException{
-        int status = 0;
+    public static List<String> getUsersByItemName(String itemname) throws SQLException{
+        List<String> users = new ArrayList<String>();
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("call insertsale(?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("select * from sale S, Advertisement A"
+                    + ", AccountsInUser C, BUser B "
+                    + " where A.advertisementid = S.advertisementid and "
+                    + " S.accountnum = C.accountnumber and C.userid = B.userid "
+                    + "and A.itemname = ?");
            
-            ps.setString(1, s.getAdId());
-            ps.setString(2, s.getAccountId());
-             ps.setString(3, s.getNumUnits());
-            status = ps.executeUpdate();
+            ps.setString(1, itemname);
+         
+           
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               
+                String s = "Name: " + rs.getString("firstname") +
+                        " " + rs.getString("lastname") + " Email:" +
+                        rs.getString("email") + "   Credit Card:" +
+                        rs.getString("creditcard");
+                users.add(s);
+            }
+            
         }
         catch(NamingException | SQLException e){
             System.out.println(e);
         }
         conn.close();
-        return status;
+        return users;
     }  
 }

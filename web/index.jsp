@@ -128,8 +128,24 @@
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="getTransactions.jsp" role="button">Get list of transactions </a>
                      </div>  
-                    </div>             
-              
+                    </div>      
+                    <form action="listOfUsersByItemName.jsp">
+                                        
+                        <div class="form-group row">
+                           <div class="form-group">
+                                 <label for="itemname" class="col-xs-12 text-center col-form-label">Item Name: </label>
+                                <div class="col-xs-10">
+                                    <input name="itemname" class="form-control " type="text" value="" id="itemname">
+                                </div>
+                          </div>
+                        </div>
+                           <div class='row'>
+                               <div class='col-md-12 text-center'>
+                                 <input type="submit" class="btn btn-primary text-center" value="Get Users Who have purchased item"/>
+                               </div>
+                               </div>
+                    </form>   
+ 
               </div>
                 <%
 
