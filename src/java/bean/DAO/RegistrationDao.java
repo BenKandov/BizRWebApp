@@ -41,6 +41,7 @@ public class RegistrationDao {
             
             
             status = ps.executeUpdate();
+            createAccount(LoginDao.login(u));
             
             conn.close();
         }

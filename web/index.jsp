@@ -16,6 +16,13 @@
         <script type="text/javascript" src="JS/bootstrap.min.js"></script>
        
     </head>
+        <%
+            if(request.getParameter("signOut")!=null){
+                session.setAttribute("userid", null);
+                session.setAttribute("ssn", null);
+                response.sendRedirect("index.jsp");
+            }
+            %>
     <body>
         <% if ( (session.getAttribute("userid") == null) && (session.getAttribute("ssn") == null)){ %>
         <div class="container-fluid">
@@ -49,7 +56,14 @@
                
         </div>
         <% }else if(session.getAttribute("ssn") != null){ 
-           
+           %>
+    
+             <form method="get" action="index.jsp">
+                        <button type="submit" id="signOut" name="signOut" type="button" class="btn btn-default navbar-btn">
+                             Sign Out
+                        </button> 
+              </form>
+           <%
             if(session.getAttribute("employeetype").toString().equals("Employee")){
              %>   
             <div class="container-fluid">
@@ -78,15 +92,29 @@
                         <a class="btn btn-success" href="recordTransaction.jsp" role="button">Record Transaction</a>
                  </div>   
               </div>
-               
-               
-            </div>
+               <div class="row">
+                  <div class="col-lg-12 text-center">
+                        <a class="btn btn-success" href="customerInfo.jsp" role="button">Add, Edit and Delete Customer Info</a>
+                 </div>   
+              </div>
+ 
             <%}
             
             else{
                 %>
-                Hey Manager;
+                Hey Manager
+                MANAGE!! manage !!managege MANAGE!!!
+              <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="customerInfo.jsp" role="button">Most Active Items </a>
+                     </div>   
+              </div>
+              
+              
+              </div>
                 <%
+
             }
         
         %>
@@ -95,12 +123,7 @@
         
         
         <% } else { %>
-        <%
-            if(request.getParameter("signOut")!=null){
-                session.setAttribute("firstname", null);
-                response.sendRedirect("index.jsp");
-            }
-            %>
+    
         
             <%@include file="templates\userNavbar.jsp" %>
         <% } %>

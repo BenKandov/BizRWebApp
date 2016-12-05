@@ -17,8 +17,8 @@
         <% 
             Sale s = new Sale();
             s.setAccountId(request.getParameter("accountnum"));
-            s.setAdId("adId");
-            s.setNumUnits("numunits");
+            s.setAdId(request.getParameter("adId"));
+            s.setNumUnits(request.getParameter("numunits"));
             
             int status = SaleDao.makeSale(s);
             

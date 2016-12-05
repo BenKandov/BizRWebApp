@@ -27,7 +27,7 @@ public class SaleDao {
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("call insertsale(?,?,?)");
-            
+            System.out.println(s.getAdId() + "gey");
             ps.setString(1, s.getAdId());
             ps.setString(2, s.getAccountId());
              ps.setString(3, s.getNumUnits());
