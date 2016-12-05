@@ -95,6 +95,36 @@ public class AdvertisementDao {
         
         
     }
+  public static List<String> itemsByCompany(String company) throws SQLException{
+        List<String> items = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call companyitems(?)");
+          
+            ps.setString(1, company);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String s = rs.getString("itemname");                       
+                items.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return items;
+        
+        
+    }
     public static List<String> mostActiveItems() throws SQLException{
         List<String> items = new ArrayList<String>();
         Connection conn = null;

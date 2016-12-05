@@ -112,6 +112,10 @@
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="allItemsList.jsp" role="button">List all items being advertised </a>
+                     </div>
+                   <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="allCompanyItems.jsp" role="button">List all items by a company </a>
                      </div>   
                     <div class="row">
                         <div class="col-lg-12 text-center">
