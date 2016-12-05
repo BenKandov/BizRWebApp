@@ -65,6 +65,7 @@ public class AdvertisementDao {
         conn.close();
         return status;
     }
+        
    public static List<String> itemsList() throws SQLException{
         List<String> items = new ArrayList<String>();
         Connection conn = null;
@@ -156,6 +157,41 @@ public class AdvertisementDao {
         return items;
         
         
+    }
+    
+    public static List<Ad> adsByInterest(String interestTag) throws SQLException {
+        List<Ad> ads = new ArrayList();
+        Connection conn = null;
+        
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Advertisement" +
+"		WHERE interestTag = ?");
+            ps.setString(1, interestTag);
+          
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {                  
+                ads.add(new Ad(
+                        rs.getString("company"),
+                        rs.getString("itemName"),
+                        rs.getString("content"),
+                        rs.getString("unitPrice"),
+                        rs.getString("numAvailableUnits"),
+                        interestTag
+                ));
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        if (conn != null)
+            conn.close();
+        return ads;
     }
     
 }

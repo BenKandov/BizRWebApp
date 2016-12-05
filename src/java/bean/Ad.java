@@ -14,9 +14,15 @@ public class Ad {
             Company, ItemName, Content, UnitPrice,
             NumAvailableUnits, AdvertisementType;
 
-    public Ad(){
-        
+    public Ad(String Company, String ItemName, String Content, String UnitPrice, String NumAvailableUnits, String AdvertisementType) {
+        this.Company = Company;
+        this.ItemName = ItemName;
+        this.Content = Content;
+        this.UnitPrice = UnitPrice;
+        this.NumAvailableUnits = NumAvailableUnits;
+        this.AdvertisementType = AdvertisementType;
     }
+    
     /**
      * @return the Company
      */
