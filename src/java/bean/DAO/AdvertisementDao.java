@@ -95,5 +95,37 @@ public class AdvertisementDao {
         
         
     }
+    public static List<String> mostActiveItems() throws SQLException{
+        List<String> items = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT A.itemname" +
+"		FROM Sale S, Advertisement A" +
+"			WHERE DATE_SUB(CURDATE(),INTERVAL 3 DAY) <= S.DateOfSale and A."
+                    + "advertisementid = S.advertisementid");
+          
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String s = rs.getString("itemname");                       
+                items.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return items;
+        
+        
+    }
     
 }
