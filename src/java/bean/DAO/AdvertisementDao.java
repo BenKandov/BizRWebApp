@@ -43,5 +43,23 @@ public class AdvertisementDao {
         }
         conn.close();
         return status;
+    }  
+        public static int deleteAd(String adid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call deleteadvertisement(?)");
+            
+            ps.setString(1,adid);
+            
+            status = ps.executeUpdate();
+        } catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
     }
 }
