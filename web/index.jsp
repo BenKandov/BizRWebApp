@@ -17,7 +17,7 @@
        
     </head>
     <body>
-        <% if (session.getAttribute("firstname") == null){ %>
+        <% if ( (session.getAttribute("userid") == null) && (session.getAttribute("ssn") == null)){ %>
         <div class="container-fluid">
             
             <div class="row">
@@ -36,8 +36,64 @@
                             <a class="btn btn-primary" href="registrationPage.jsp" role="button">Sign Up</a>
                       </div>
             </div>
+            <div class="row">
+                      <div class="col-md-12 text-center">
+                            <a class="btn btn-primary" href="employeeRegistrationPage.jsp" role="button">Register Employee/Manager</a>
+                      </div>
+            </div>
+            <div class="row">
+                      <div class="col-md-12 text-center">
+                            <a class="btn btn-primary" href="employeeLoginPage.jsp" role="button">Login as Employee/Manager</a>
+                      </div>
+            </div>
                
         </div>
+        <% }else if(session.getAttribute("ssn") != null){ 
+           
+            if(session.getAttribute("employeetype").toString().equals("Employee")){
+             %>   
+            <div class="container-fluid">
+             <div class="row">
+                 <div class="col-lg-12 text-center">
+                     <h1> Hey employee. </h1>
+                 </div>      
+             </div>
+                             <div class="row">
+                 <div class="col-lg-12 text-center">
+                     <h1> work work work!!.!!! </h1>
+                 </div>      
+             </div>
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                <a class="btn btn-primary" href="createAd.jsp" role="button">Create Ad</a>
+                 </div>    
+              </div>
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                <a class="btn btn-danger" href="deleteAd.jsp" role="button">Delete Ad</a>
+                 </div>    
+              </div>
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                        <a class="btn btn-success" href="deleteAd.jsp" role="button">Record Transaction</a>
+                 </div>   
+              </div>
+               
+               
+            </div>
+            <%}
+            
+            else{
+                %>
+                Hey Manager;
+                <%
+            }
+        
+        %>
+            
+        
+        
+        
         <% } else { %>
         <%
             if(request.getParameter("signOut")!=null){
