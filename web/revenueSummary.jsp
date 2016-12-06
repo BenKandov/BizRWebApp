@@ -30,11 +30,23 @@
                         </div>
                   </div>
                 </div>
-                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Item "/>
+                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Item Name "/>
                 
             </form>
 
-            
+                        
+             <form action="revenueSummaryByItemType.jsp">
+                <div class="form-group row">
+                   <div class="form-group">
+                         <label for="itemtype" class="col-xs-2 col-form-label">Item Type: </label>
+                        <div class="col-xs-10">
+                            <input name="itemtype" class="form-control" type="text" value="" id="itemtype">
+                        </div>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Item Type "/>
+                
+            </form>
                  <div class="row">
                     <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="monthlySalesReport.jsp" role="button"> Produce Revenue Summary By Item Type </a>
