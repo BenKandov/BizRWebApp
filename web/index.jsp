@@ -102,8 +102,8 @@
             
             else{
                 %>
-                Hey Manager
-                MANAGE!! manage !!managege MANAGE!!!
+                hello Manager
+                <h1>MANAGE!</h1><h3>! manage</h3> !!managege MANAGE!!!
               <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 text-center">
@@ -155,7 +155,11 @@
                             <a class="btn btn-success" href="mostRevenueEmployee.jsp" role="button"> Find most revenue employee </a>
                         </div>  
                     </div>                         
-                        
+                     <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="revenueSummary.jsp" role="button"> Get Revenue Summary </a>
+                        </div>  
+                    </div>                            
               </div>
                 <%
 

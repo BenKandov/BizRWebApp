@@ -243,5 +243,37 @@ public class SaleDao {
         conn.close();
         return employees;
  
-    }    
+    }   
+    public static List<String> revenueSummaryByItemName(String itemname) throws SQLException{
+        List<String> transactions = new ArrayList<String>();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select distinct * from revenueSummary"
+                    + " S"
+                    + ", Advertisement A where A.advertisementid=S.advertisementid "
+                    + "and A.itemname =?");
+                  
+           
+            ps.setString(1, itemname);
+           
+            ResultSet rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                String s = rs.getString("itemname") + " sold at " +
+                        rs.getString("dateofsale") + " in quantity of "+
+                        rs.getString("numunits")+ " to userid: " + rs.getString("userid");
+                transactions.add(s);
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return transactions;
+    }  
 }
