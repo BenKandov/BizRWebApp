@@ -12,15 +12,19 @@ package bean;
 public class Ad {
     private String 
             Company, ItemName, Content, UnitPrice,
-            NumAvailableUnits, AdvertisementType;
-
-    public Ad(String Company, String ItemName, String Content, String UnitPrice, String NumAvailableUnits, String AdvertisementType) {
+            NumAvailableUnits, AdvertisementType, employeeId;
+    public Ad(){
+        
+    }
+    public Ad(String Company, String ItemName, String Content, String UnitPrice, String NumAvailableUnits, String AdvertisementType
+    ,String employeeId) {
         this.Company = Company;
         this.ItemName = ItemName;
         this.Content = Content;
         this.UnitPrice = UnitPrice;
         this.NumAvailableUnits = NumAvailableUnits;
         this.AdvertisementType = AdvertisementType;
+        this.employeeId = employeeId;
     }
     
     /**
@@ -105,6 +109,20 @@ public class Ad {
      */
     public void setAdvertisementType(String AdvertisementType) {
         this.AdvertisementType = AdvertisementType;
+    }
+
+    /**
+     * @return the employeeId
+     */
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    /**
+     * @param employeeId the employeeId to set
+     */
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
     
             

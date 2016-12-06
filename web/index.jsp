@@ -143,13 +143,19 @@
                                <div class='col-md-12 text-center'>
                                  <input type="submit" class="btn btn-primary text-center" value="Get Users Who have purchased item"/>
                                </div>
-                               </div>
+                            </div>
                     </form>   
                      <div class="row">
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="mostRevenueCustomer.jsp" role="button"> Find most revenue customer </a>
                      </div>  
                     </div>  
+                     <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="mostRevenueEmployee.jsp" role="button"> Find most revenue employee </a>
+                        </div>  
+                    </div>                         
+                        
               </div>
                 <%
 

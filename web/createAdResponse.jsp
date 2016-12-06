@@ -19,6 +19,7 @@
     <body>
         <% 
             Ad a = new Ad();
+            a.setEmployeeId(session.getAttribute("ssn").toString());
             a.setCompany(request.getParameter("company"));
             a.setItemName(request.getParameter("itemname"));
             a.setContent(request.getParameter("content"));

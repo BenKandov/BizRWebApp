@@ -180,7 +180,8 @@ public class AdvertisementDao {
                         rs.getString("content"),
                         rs.getString("unitPrice"),
                         rs.getString("numAvailableUnits"),
-                        interestTag
+                        rs.getString("advertisementtype"),
+                        rs.getString("employeeId")
                 ));
             }
             

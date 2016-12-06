@@ -187,9 +187,41 @@ public class SaleDao {
         }
         conn.close();
         return customers;
-        
-        
+ 
     }
     
-    
+   public static List<String> getMostRevenueEmployee() throws SQLException{
+        List<String> employees = new ArrayList<String>();
+        Connection conn = null;
+        
+        try{
+          
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from mostRevenueEmployee");
+         
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                
+                
+                 String s = "EmployeeId: " + rs.getString("employeeid")
+                         + "Total Revenue: " + rs.getString("amountspent");
+                       
+                employees.add(s);
+                
+            }
+            
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        conn.close();
+        return employees;
+ 
+    }    
 }
