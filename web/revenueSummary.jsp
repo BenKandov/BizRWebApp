@@ -21,7 +21,7 @@
             
             
             
-             <form action="revenueSummaryByItem.jsp">
+          <form action="revenueSummaryByItem.jsp">
                 <div class="form-group row">
                    <div class="form-group">
                          <label for="itemname" class="col-xs-2 col-form-label">Item Name: </label>
@@ -44,20 +44,22 @@
                         </div>
                   </div>
                 </div>
-                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Item Type "/>
-                
+                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Item Type "/>                
             </form>
-                 <div class="row">
-                    <div class="col-lg-12 text-center">
-                            <a class="btn btn-success" href="monthlySalesReport.jsp" role="button"> Produce Revenue Summary By Item Type </a>
-                     </div>   
-                </div>  
             
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                            <a class="btn btn-success" href="monthlySalesReport.jsp" role="button"> Produce Revenue Summary By Customer </a>
-                     </div>   
-                </div>            
+             <form action="revenueSummaryByCustomer.jsp">
+                <div class="form-group row">
+                   <div class="form-group">
+                         <label for="email" class="col-xs-2 col-form-label">Customer Email: </label>
+                        <div class="col-xs-10">
+                            <input name="email" class="form-control" type="text" value="" id="email">
+                        </div>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Produce Revenue Summary By Customer "/>                
+            </form>            
+            
+         
         </div>
       
     </body>
