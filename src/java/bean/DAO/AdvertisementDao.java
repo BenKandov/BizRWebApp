@@ -28,17 +28,18 @@ public class AdvertisementDao {
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("call insertadvertisement(?,?,?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("call insertadvertisement(?,?,?,?,?,?,?)");
             
-            ps.setString(1, a.getCompany());
+            ps.setString(1, a.getEmployeeId());
+            ps.setString(2, a.getCompany());
             
-            ps.setString(2, a.getItemName());
-            ps.setString(3, a.getContent());
+            ps.setString(3, a.getItemName());
+            ps.setString(4, a.getContent());
             
-            ps.setString(4, a.getUnitPrice());
+            ps.setString(5, a.getUnitPrice());
           
-            ps.setString(5, a.getNumAvailableUnits());
-            ps.setString(6, a.getAdvertisementType());
+            ps.setString(6, a.getNumAvailableUnits());
+            ps.setString(7, a.getAdvertisementType());
             status = ps.executeUpdate();
         }
         catch(NamingException | SQLException e){

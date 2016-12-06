@@ -119,7 +119,27 @@ public class SaleDao {
         }
         conn.close();
         return transactions;
-    }  
+    } 
+    public static int makeSale(Sale s) throws SQLException{
+             int status = 0;
+         Connection conn = null;
+         try{
+             InitialContext ctx = new InitialContext();
+             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+             conn = (Connection) ds.getConnection();
+             PreparedStatement ps = conn.prepareStatement("call insertsale(?,?,?)");
+             
+             ps.setString(1, s.getAdId());
+             ps.setString(2, s.getAccountId());
+              ps.setString(3, s.getNumUnits());
+             status = ps.executeUpdate();
+         }
+         catch(NamingException | SQLException e){
+             System.out.println(e);
+         }
+        conn.close();
+         return status;
+     }  
     
     public static List<String> getUsersByItemName(String itemname) throws SQLException{
         List<String> users = new ArrayList<String>();
