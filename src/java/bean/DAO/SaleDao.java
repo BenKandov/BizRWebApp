@@ -5,8 +5,6 @@
  */
 package bean.DAO;
 
-import bean.Ad;
-import bean.Sale;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +20,7 @@ import javax.sql.DataSource;
  * @author benkandov
  */
 public class SaleDao {
+    
     public static List<String> monthlySalesReport(int month) throws SQLException{
         List<String> sales = new ArrayList<String>();
         Connection conn = null;
@@ -57,7 +56,7 @@ public class SaleDao {
         
     }
     public static List<String> getTransactionsByItemName(String itemname) throws SQLException{
-        List<String> transactions = new ArrayList<String>();
+        List<String> transactions = new ArrayList();
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
@@ -83,12 +82,39 @@ public class SaleDao {
         catch(NamingException | SQLException e){
             System.out.println(e);
         }
-        conn.close();
+        if (conn != null)
+            conn.close();
         return transactions;
-    }  
+    }
+    
+    public static List<String> getMailingListByCompany(String company) throws SQLException {
+        ArrayList<String> mailingList = new ArrayList();
+        Connection conn = null;
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT U.email FROM BUser U Sale S"
+                    + "WHERE S.userId = ? AND S.userId = U.userId");
+            ps.setString(1, company);
+           
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                mailingList.add(rs.getString(1));
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        if (conn != null)
+            conn.close();
+        return mailingList;
+    }
     
     public static List<String> getTransactionsByEmail(String email) throws SQLException{
-        List<String> transactions = new ArrayList<String>();
+        List<String> transactions = new ArrayList();
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
@@ -117,7 +143,8 @@ public class SaleDao {
         catch(NamingException | SQLException e){
             System.out.println(e);
         }
-        conn.close();
+        if (conn != null)
+            conn.close();
         return transactions;
     } 
     public static int makeSale(Sale s) throws SQLException{
@@ -142,7 +169,7 @@ public class SaleDao {
      }  
     
     public static List<String> getUsersByItemName(String itemname) throws SQLException{
-        List<String> users = new ArrayList<String>();
+        List<String> users = new ArrayList();
         Connection conn = null;
         try{
             InitialContext ctx = new InitialContext();
@@ -171,7 +198,8 @@ public class SaleDao {
         catch(NamingException | SQLException e){
             System.out.println(e);
         }
-        conn.close();
+        if (conn != null)
+            conn.close();
         return users;
     }
     

@@ -30,16 +30,11 @@ public class RegistrationDao {
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("Call createUser(?,?,?,?)");
             
-            
-            
             ps.setString(1, u.getFirstName());
             ps.setString(2, u.getLastName());
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getPassword());
-            
           
-            
-            
             status = ps.executeUpdate();
             createAccount(LoginDao.login(u));
             
