@@ -159,7 +159,13 @@
                         <div class="col-lg-12 text-center">
                             <a class="btn btn-success" href="revenueSummary.jsp" role="button"> Get Revenue Summary </a>
                         </div>  
-                    </div>                            
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a class="btn btn-success" href="addEmployee.jsp" role="button"> Add employee </a>
+                        </div>  
+                    </div>  
+                        
               </div>
                 <%
 
