@@ -182,6 +182,23 @@
                             </div>
                     </form> 
                         
+                    <form action="editEmployee.jsp">
+                                        
+                        <div class="form-group row">
+                           <div class="form-group">
+                                 <label for="id" class="col-xs-12 text-center col-form-label">Employee ID: </label>
+                                <div class="col-xs-10">
+                                    <input name="id" class="form-control " type="text" value="" id="id">
+                                </div>
+                          </div>
+                        </div>
+                           <div class='row'>
+                               <div class='col-md-12 text-center'>
+                                 <input type="submit" class="btn btn-primary text-center" value="Edit Employee"/>
+                               </div>
+                            </div>
+                    </form> 
+                        
               </div>
                 <%
 

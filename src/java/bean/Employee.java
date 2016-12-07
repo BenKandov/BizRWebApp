@@ -11,7 +11,8 @@ package bean;
  */
 public class Employee {
     private String SSN, EmployeeType, FirstName, LastName;
-    
+    private String hourlyRate, phoneNum, zipcode, state,
+            city, address;
     public Employee(){
         
     }
@@ -70,6 +71,90 @@ public class Employee {
      */
     public void setLastName(String LastName) {
         this.LastName = LastName;
+    }
+
+    /**
+     * @return the hourlyRate
+     */
+    public String getHourlyRate() {
+        return hourlyRate;
+    }
+
+    /**
+     * @param hourlyRate the hourlyRate to set
+     */
+    public void setHourlyRate(String hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    /**
+     * @return the phoneNum
+     */
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    /**
+     * @param phoneNum the phoneNum to set
+     */
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    /**
+     * @return the zipcode
+     */
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    /**
+     * @param zipcode the zipcode to set
+     */
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    /**
+     * @return the state
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     

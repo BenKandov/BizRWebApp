@@ -99,4 +99,79 @@ public class EmployeeDao {
         return status;   
     }
     
+    public static Employee getEmployeeById(String id) throws SQLException{
+         Employee em = new Employee();
+         Connection conn = null;
+         try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from employee where"
+                    + " ssn = ?");
+            
+          
+            ps.setString(1, id);
+          
+            ResultSet rs = ps.executeQuery();
+            
+            rs.next();
+            
+            em.setHourlyRate(rs.getString("hourlyrate"));
+            em.setPhoneNum(rs.getString("phonenum"));
+            em.setZipcode(rs.getString("zipcode"));
+            em.setEmployeeType(rs.getString("employeetype"));
+            em.setState(rs.getString("state"));
+            em.setCity(rs.getString("city"));
+            em.setAddress(rs.getString("address"));
+            em.setFirstName(rs.getString("firstname"));
+            em.setLastName(rs.getString("lastname"));
+            
+            
+            
+         }
+         catch(NamingException | SQLException e){
+             System.out.println(e);
+         }
+         if (conn != null)
+            conn.close();
+         return em;
+    
+         
+     }
+    public static int update(Employee em) throws SQLException{
+         int status = 0;
+         Connection conn = null;
+         try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE employee SET "
+                    + "firstname = ?, lastname = ?, phonenum = ?, address =?,"
+                    + "state = ?, city = ?, zipcode = ?, hourlyrate = ? where "
+                    + "ssn = ?");
+            
+            ps.setString(1,em.getFirstName());
+            ps.setString(2,em.getLastName());
+            ps.setString(3,em.getPhoneNum());
+            ps.setString(4,em.getAddress());
+            ps.setString(5,em.getState());
+            ps.setString(6,em.getCity());
+            ps.setString(7,em.getZipcode());
+            ps.setString(8,em.getHourlyRate());
+            ps.setString(9,em.getSSN());
+            
+            
+            status = ps.executeUpdate();
+            
+         }
+         catch(NamingException | SQLException e){
+            System.out.println(e);
+         }
+         
+         if (conn != null)
+            conn.close();
+         
+         return status;
+     }
+    
 }
