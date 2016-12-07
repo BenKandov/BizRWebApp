@@ -73,5 +73,30 @@ public class EmployeeDao {
      
         return status;   
     }
+    public static int deleteEmployee(String id) throws SQLException{
+        int status = 0;
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("delete from employee where"
+                    + " ssn = ?");
+            
+            
+            
+            ps.setString(1, id);
+
+      
+            status = ps.executeUpdate();
+            
+            conn.close();
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+     
+        return status;   
+    }
     
 }

@@ -165,6 +165,22 @@
                             <a class="btn btn-success" href="addEmployee.jsp" role="button"> Add employee </a>
                         </div>  
                     </div>  
+                    <form action="deleteEmployee.jsp">
+                                        
+                        <div class="form-group row">
+                           <div class="form-group">
+                                 <label for="id" class="col-xs-12 text-center col-form-label">Employee ID: </label>
+                                <div class="col-xs-10">
+                                    <input name="id" class="form-control " type="text" value="" id="id">
+                                </div>
+                          </div>
+                        </div>
+                           <div class='row'>
+                               <div class='col-md-12 text-center'>
+                                 <input type="submit" class="btn btn-primary text-center" value="Delete Employee"/>
+                               </div>
+                            </div>
+                    </form> 
                         
               </div>
                 <%
