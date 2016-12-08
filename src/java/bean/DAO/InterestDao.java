@@ -37,7 +37,7 @@ public class InterestDao {
             
             status = ps.executeUpdate();  
         }
-        catch(NamingException | SQLException e){
+        catch(NamingException | SQLException e) {
             System.out.println(e);
         }
         if (conn != null)

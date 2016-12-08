@@ -148,6 +148,45 @@ public class SaleDao {
             conn.close();
         return transactions;
     } 
+    
+    public static String getAdvertisementTypesFromSales(String email) throws SQLException {
+        String adTypes = new String();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            
+            PreparedStatement ps = conn.prepareStatement("select * from sale S, Advertisement A"
+                    + ", AccountsInUser C, BUser B "
+                    + " where A.advertisementid = S.advertisementid and "
+                    + " S.accountnum = C.accountnumber and C.userid = B.userid "
+                    + "and B.email = ?");
+                  
+           
+            ps.setString(1, email);
+           
+            ResultSet rs = ps.executeQuery();
+            
+            String adType;
+            while(rs.next()) {
+                adType = rs.getString("advertisementType");
+                if (!adTypes.contains(adType)) {
+                    adTypes += "," + adType;
+                }
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        if (conn != null)
+            conn.close();
+        
+        
+        return adTypes;
+    } 
+    
     public static int makeSale(Sale s) throws SQLException{
              int status = 0;
          Connection conn = null;
@@ -372,5 +411,29 @@ public class SaleDao {
         }
         conn.close();
         return transactions;
-    } 
+    }
+    
+    public static List<String> getBestSellerItems() throws SQLException {
+        ArrayList<String> bestSellers = new ArrayList();
+        Connection conn = null;
+        try{
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("CALL PROCEDURE bestSellers");
+           
+            ResultSet rs = ps.executeQuery();
+           
+            while(rs.next()) {
+                bestSellers.add(rs.getString("itemname"));
+            }
+            
+        }
+        catch(NamingException | SQLException e){
+            System.out.println(e);
+        }
+        if (conn != null)
+            conn.close();
+        return bestSellers;
+    }
 }

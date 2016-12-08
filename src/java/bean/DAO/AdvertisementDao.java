@@ -21,160 +21,154 @@ import javax.sql.DataSource;
  * @author benkandov
  */
 public class AdvertisementDao {
-        public static int makeAd(Ad a) throws SQLException{
-            int status = 0;
+
+    public static int makeAd(Ad a) throws SQLException {
+        int status = 0;
         Connection conn = null;
-        try{
+        try {
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("call insertadvertisement(?,?,?,?,?,?,?)");
-            
+
             ps.setString(1, a.getEmployeeId());
             ps.setString(2, a.getCompany());
-            
+
             ps.setString(3, a.getItemName());
             ps.setString(4, a.getContent());
-            
+
             ps.setString(5, a.getUnitPrice());
-          
+
             ps.setString(6, a.getNumAvailableUnits());
             ps.setString(7, a.getAdvertisementType());
             status = ps.executeUpdate();
-        }
-        catch(NamingException | SQLException e){
-            System.out.println(e);
-        }
-        conn.close();
-        return status;
-    }  
-        public static int deleteAd(String adid) throws SQLException {
-        int status = 0;
-        Connection conn = null;
-        try{
-            InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
-            conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("call deleteadvertisement(?)");
-            
-            ps.setString(1,adid);
-            
-            status = ps.executeUpdate();
-        } catch(NamingException | SQLException e){
+        } catch (NamingException | SQLException e) {
             System.out.println(e);
         }
         conn.close();
         return status;
     }
-        
-   public static List<String> itemsList() throws SQLException{
+
+    public static int deleteAd(String adid) throws SQLException {
+        int status = 0;
+        Connection conn = null;
+        try {
+            InitialContext ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
+            conn = (Connection) ds.getConnection();
+            PreparedStatement ps = conn.prepareStatement("call deleteadvertisement(?)");
+
+            ps.setString(1, adid);
+
+            status = ps.executeUpdate();
+        } catch (NamingException | SQLException e) {
+            System.out.println(e);
+        }
+        conn.close();
+        return status;
+    }
+
+    public static List<String> itemsList() throws SQLException {
         List<String> items = new ArrayList<String>();
         Connection conn = null;
-        
-        try{
-          
+
+        try {
+
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("select distinct itemname"
                     + " from advertisement");
-          
+
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                String s = rs.getString("itemname");                       
+
+            while (rs.next()) {
+                String s = rs.getString("itemname");
                 items.add(s);
-                
+
             }
-            
-            
-        }
-        catch(NamingException | SQLException e){
+
+        } catch (NamingException | SQLException e) {
             System.out.println(e);
         }
         conn.close();
         return items;
-        
-        
+
     }
-  public static List<String> itemsByCompany(String company) throws SQLException{
+
+    public static List<String> itemsByCompany(String company) throws SQLException {
         List<String> items = new ArrayList<String>();
         Connection conn = null;
-        
-        try{
-          
+
+        try {
+
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("call companyitems(?)");
-          
+
             ps.setString(1, company);
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                String s = rs.getString("itemname");                       
+
+            while (rs.next()) {
+                String s = rs.getString("itemname");
                 items.add(s);
-                
+
             }
-            
-            
-        }
-        catch(NamingException | SQLException e){
+
+        } catch (NamingException | SQLException e) {
             System.out.println(e);
         }
         conn.close();
         return items;
-        
-        
+
     }
-    public static List<String> mostActiveItems() throws SQLException{
+
+    public static List<String> mostActiveItems() throws SQLException {
         List<String> items = new ArrayList<String>();
         Connection conn = null;
-        
-        try{
-          
+
+        try {
+
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT A.itemname" +
-"		FROM Sale S, Advertisement A" +
-"			WHERE DATE_SUB(CURDATE(),INTERVAL 3 DAY) <= S.DateOfSale and A."
+            PreparedStatement ps = conn.prepareStatement("SELECT A.itemname"
+                    + "		FROM Sale S, Advertisement A"
+                    + "			WHERE DATE_SUB(CURDATE(),INTERVAL 3 DAY) <= S.DateOfSale and A."
                     + "advertisementid = S.advertisementid");
-          
+
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                String s = rs.getString("itemname");                       
+
+            while (rs.next()) {
+                String s = rs.getString("itemname");
                 items.add(s);
-                
+
             }
-            
-            
-        }
-        catch(NamingException | SQLException e){
+
+        } catch (NamingException | SQLException e) {
             System.out.println(e);
         }
         conn.close();
         return items;
-        
-        
+
     }
-    
+
     public static List<Ad> adsByInterest(String interestTag) throws SQLException {
         List<Ad> ads = new ArrayList();
         Connection conn = null;
-        
+
         try {
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
+            DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Advertisement" +
-"		WHERE interestTag = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Advertisement"
+                    + "		WHERE interestTag = ?");
             ps.setString(1, interestTag);
-          
+
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()) {                  
+
+            while (rs.next()) {
                 ads.add(new Ad(
                         rs.getString("company"),
                         rs.getString("itemName"),
@@ -185,15 +179,24 @@ public class AdvertisementDao {
                         rs.getString("employeeId")
                 ));
             }
-            
-            
-        }
-        catch(NamingException | SQLException e){
+
+        } catch (NamingException | SQLException e) {
             System.out.println(e);
         }
-        if (conn != null)
+        if (conn != null) {
             conn.close();
+        }
         return ads;
     }
-    
+
+    public static List<Ad> adsByTransactionHistory(String email) throws SQLException {
+        ArrayList<Ad> ads = new ArrayList();
+
+        String adTypes[] = SaleDao.getAdvertisementTypesFromSales(email).split(",");
+        
+        for (String adType : adTypes) {
+            ads.addAll(adsByInterest(adType));
+        }
+      return ads;
+    }
 }
