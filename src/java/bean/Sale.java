@@ -12,6 +12,9 @@ package bean;
 public class Sale {
     private String adId, AccountId, NumUnits;
 
+    
+    
+    
     /**
      * @return the adId
      */
