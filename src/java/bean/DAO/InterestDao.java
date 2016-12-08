@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  */
 public class InterestDao {
     
-    public int addInterest(String interestTag, String accountNumber) throws SQLException {
+    public static int addInterest(String interestTag, String accountNumber) throws SQLException {
         int status = 0;
         Connection conn = null;
         
@@ -45,7 +45,7 @@ public class InterestDao {
         return status;
     }
     
-    public int deleteInterest(String interestTag, String accountNumber) throws SQLException {
+    public static int deleteInterest(String interestTag, String accountNumber) throws SQLException {
         int status = 0;
         Connection conn = null;
         
@@ -68,7 +68,7 @@ public class InterestDao {
         return status;
     }
     
-    public List<Ad> adsByAccountInterests(String accountNumber) throws SQLException {
+    public static List<Ad> adsByAccountInterests(String accountNumber) throws SQLException {
         ArrayList<Ad> ads = new ArrayList();
         Connection conn = null;
         
