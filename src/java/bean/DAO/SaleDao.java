@@ -95,8 +95,8 @@ public class SaleDao {
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT U.email FROM BUser U Sale S"
-                    + "WHERE S.userId = ? AND S.userId = U.userId");
+            PreparedStatement ps = conn.prepareStatement("SELECT U.email FROM BUser U, Sale S"
+                    + " WHERE S.userId = ? AND S.userId = U.userId");
             ps.setString(1, company);
            
             ResultSet rs = ps.executeQuery();
@@ -420,7 +420,7 @@ public class SaleDao {
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("CALL PROCEDURE bestSellers");
+            PreparedStatement ps = conn.prepareStatement("select * from bestSellers");
            
             ResultSet rs = ps.executeQuery();
            

@@ -16,8 +16,9 @@
     <body>
         <%List<String> bestSellers = SaleDao.getBestSellerItems();
         int i = 1;
-        for (String bs : bestSellers) {
-           out.print(i + ":" + bs + "\n");
+        for (String bs : bestSellers) { %>
+        <h1>  <%  out.print(i + ":" + bs + "\n");%> </h1>
+           <%
            ++i;
         }%>
     </body>
