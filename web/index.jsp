@@ -103,20 +103,67 @@
                 </div>   
             </div>
             <form action="viewCompanyMailingList.jsp">
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="company" class="col-xs-12 text-center col-form-label">company: </label>
-                                <div class="col-xs-10">
-                                    <input name="company" class="form-control " type="text" value="" id="itemname">
-                                </div>
-                            </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <label for="company" class="col-xs-12 text-center col-form-label">company: </label>
+                        <div class="col-xs-10">
+                            <input name="company" class="form-control " type="text" value="" id="itemname">
                         </div>
-                        <div class='row'>
-                            <div class='col-md-12 text-center'>
-                                <input type="submit" class="btn btn-primary text-center" value="View company mailing list."/>
-                            </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12 text-center'>
+                        <input type="submit" class="btn btn-primary text-center" value="View company mailing list."/>
+                    </div>
+                </div>
+            </form>
+            <form action="viewItemsByInterest.jsp">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
+                        <div class="col-xs-10">
+                            <input name="email" class="form-control " type="text" value="" id="itemname">
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12 text-center'>
+                        <input type="submit" class="btn btn-primary text-center" value="Search for items based on your interests."/>
+                    </div>
+                </div>
+            </form>
+
+            <form action="viewSuggestionList.jsp">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
+                        <div class="col-xs-10">
+                            <input name="email" class="form-control " type="text" value="" id="itemname">
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12 text-center'>
+                        <input type="submit" class="btn btn-primary text-center" value="View suggestions based on transaction history."/>
+                    </div>
+                </div>
+            </form>
+
+            <form action="transactionsByEmail.jsp">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
+                        <div class="col-xs-10">
+                            <input name="email" class="form-control " type="text" value="" id="itemname">
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12 text-center'>
+                        <input type="submit" class="btn btn-primary text-center" value="View transactions history."/>
+                    </div>
+                </div>
+            </form>
 
             <%} else {
             %>
@@ -228,55 +275,6 @@
 
                     <% } else { %>
                     <%@include file="templates\userNavbar.jsp" %>
-
-                    <form action="viewItemsByInterest.jsp">
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
-                                <div class="col-xs-10">
-                                    <input name="email" class="form-control " type="text" value="" id="itemname">
-                                </div>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class='col-md-12 text-center'>
-                                <input type="submit" class="btn btn-primary text-center" value="Search for items based on your interests."/>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <form action="viewSuggestionList.jsp">
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
-                                <div class="col-xs-10">
-                                    <input name="email" class="form-control " type="text" value="" id="itemname">
-                                </div>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class='col-md-12 text-center'>
-                                <input type="submit" class="btn btn-primary text-center" value="View suggestions based on transaction history."/>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <form action="transactionsByEmail.jsp">
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="email" class="col-xs-12 text-center col-form-label">email: </label>
-                                <div class="col-xs-10">
-                                    <input name="email" class="form-control " type="text" value="" id="itemname">
-                                </div>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class='col-md-12 text-center'>
-                                <input type="submit" class="btn btn-primary text-center" value="View transactions history."/>
-                            </div>
-                        </div>
-                    </form>
-                    
                     <% }%>
 
 
