@@ -163,7 +163,7 @@ public class AdvertisementDao {
             DataSource ds = (DataSource) ctx.lookup("Bazaar_Application_Connection");
             conn = (Connection) ds.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Advertisement"
-                    + "		WHERE interestTag = ?");
+                    + "	WHERE interestTag = ?");
             ps.setString(1, interestTag);
 
             ResultSet rs = ps.executeQuery();
