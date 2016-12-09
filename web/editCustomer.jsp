@@ -19,12 +19,17 @@
     <body>
         <%
             String id = request.getParameter("id");
+            String email = LoginDao.getEmailFromUserId(id);
+          
             User user = LoginDao.getUserFromUserId(id);
             %>
         <div class="container-fluid">
             <form action="editCustomerResponse.jsp">
-                <input type ="hidden" name="id" value="<%out.print(id); %>">
+                 <input type="hidden" name="email" value="<%out.print(email); %>">
+               
+                
                 <div class="form-group row">
+                   
                    <div class="form-group">
                          <label for="firstNameInput" class="col-xs-2 col-form-label">First Name: </label>
                         <div class="col-xs-10">
@@ -98,6 +103,7 @@
                             <input name="creditCard" class="form-control" type="text" value="<% if (user.getCreditCard()!=null) out.print(user.getCreditCard()); %>" id="hourlyrateinput">
                         </div>
                   </div>
+                        
                 </div>
                 
                 <input type="submit" class="btn btn-primary" value="Update Info"/>

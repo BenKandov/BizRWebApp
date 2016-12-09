@@ -12,16 +12,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Company Mailing List</title>
+            <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="JS/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/bootstrap.min.js"></script>
+
     </head>
     <body>
          <%
-            String company = request.getParameter("Company name");
+            String company = request.getParameter("company");
             
             List<String> mailingList = SaleDao.getMailingListByCompany(company);
         for(String email: mailingList){
-            out.print(email);
-        
-        %>
+            %>
+            <h1 class="text-center">   <% out.print(email);%> </h1>
+      
         
         <hr>
         

@@ -25,9 +25,9 @@
             <hr>
             <div class='row'>
             <div class='col-md-12 text-center'>
-                h1><%out.print("Company " + ad.getCompany() + "\nItem: " + ad.getItemName() + "\n" + 
+                <h1><%out.print("Company " + ad.getCompany() + "\nItem: " + ad.getItemName() + "\n" + 
                         ad.getContent() + "\nPrice: " + ad.getUnitPrice() + "\nNum available" + 
-                        ad.getNumAvailableUnits() + "\n\n");%>
+                        ad.getNumAvailableUnits() + "\n\n");%> </h1>
          </div>
             </div>
             <% }%>
@@ -35,6 +35,6 @@
         <hr>
         
         
-        <%} %>
+    
     </body>
 </html>

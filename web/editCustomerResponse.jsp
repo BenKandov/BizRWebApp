@@ -19,6 +19,8 @@
     <body>
         <%
             User user = new User();
+            user.setEmail(request.getParameter("email").toString());
+           out.println(request.getParameter("email"));
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
             user.setPhoneNumber(request.getParameter("phonenum"));

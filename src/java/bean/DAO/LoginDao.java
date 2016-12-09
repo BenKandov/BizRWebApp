@@ -125,6 +125,9 @@ public class LoginDao {
                     + "state = ?, city = ?, zipcode = ?, creditcard = ? where "
                     + "email = ?");
             
+            
+            
+            
             ps.setString(1,u.getFirstName());
             ps.setString(2,u.getLastName());
             ps.setString(3,u.getPhoneNumber());
@@ -135,6 +138,7 @@ public class LoginDao {
             ps.setString(8,u.getCreditCard());
             ps.setString(9,u.getEmail());
             
+           System.out.print("fuck " + u.getEmail());
             
             status = ps.executeUpdate();
             

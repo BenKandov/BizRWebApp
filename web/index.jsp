@@ -97,11 +97,22 @@
                     <a class="btn btn-success" href="viewBestSellingItems.jsp" role="button">View Best Selling Items</a>
                 </div>   
             </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a class="btn btn-success" href="editCustomer.jsp" role="button">Add, Edit and Delete Customer Info</a>
-                </div>   
-            </div>
+            <form action="editCustomer.jsp">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <label for="id" class="col-xs-12 text-center col-form-label">Id: </label>
+                        <div class="col-xs-10">
+                            <input name="id" class="form-control " type="text" value="" id="id">
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-12 text-center'>
+                        <input type="submit" class="btn btn-primary text-center" value="Edit customer"/>
+                    </div>
+                </div>
+            </form>
+  
             <form action="viewCompanyMailingList.jsp">
                 <div class="form-group row">
                     <div class="form-group">
